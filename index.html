@@ -1,0 +1,1961 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>BPMN animado alerta triaje</title>
+<style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=Instrument+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>/**
+ * color definitions
+ */
+.djs-parent {
+  --color-grey-225-10-15: hsl(225, 10%, 15%);
+  --color-grey-225-10-35: hsl(225, 10%, 35%);
+  --color-grey-225-10-55: hsl(225, 10%, 55%);
+  --color-grey-225-10-75: hsl(225, 10%, 75%);
+  --color-grey-225-10-80: hsl(225, 10%, 80%);
+  --color-grey-225-10-85: hsl(225, 10%, 85%);
+  --color-grey-225-10-90: hsl(225, 10%, 90%);
+  --color-grey-225-10-95: hsl(225, 10%, 95%);
+  --color-grey-225-10-97: hsl(225, 10%, 97%);
+
+  --color-blue-205-100-45: hsl(205, 100%, 45%);
+  --color-blue-205-100-45-opacity-30: hsla(205, 100%, 45%, 30%);
+  --color-blue-205-100-50: hsl(205, 100%, 50%);
+  --color-blue-205-100-50-opacity-15: hsla(205, 100%, 50%, 15%);
+  --color-blue-205-100-70: hsl(205, 100%, 75%);
+  --color-blue-205-100-95: hsl(205, 100%, 95%);
+
+  --color-green-150-86-44: hsl(150, 86%, 44%);
+
+  --color-red-360-100-40: hsl(360, 100%, 40%);
+  --color-red-360-100-45: hsl(360, 100%, 45%);
+  --color-red-360-100-92: hsl(360, 100%, 92%);
+  --color-red-360-100-97: hsl(360, 100%, 97%);
+
+  --color-white: hsl(0, 0%, 100%);
+  --color-black: hsl(0, 0%, 0%);
+  --color-black-opacity-10: hsla(0, 0%, 0%, 10%);
+  --color-black-opacity-30: hsla(0, 0%, 0%, 30%);
+
+  --canvas-fill-color: var(--color-white);
+
+  --bendpoint-fill-color: var(--color-blue-205-100-45);
+  --bendpoint-stroke-color: var(--canvas-fill-color);
+
+  --context-pad-entry-background-color: var(--color-white);
+  --context-pad-entry-hover-background-color: var(--color-grey-225-10-95);
+
+  --element-dragger-color: var(--color-blue-205-100-50);
+  --element-hover-outline-fill-color: var(--color-blue-205-100-45);
+  --element-selected-outline-stroke-color: var(--color-blue-205-100-50);
+  --element-selected-outline-secondary-stroke-color: var(--color-blue-205-100-70);
+
+  --lasso-fill-color: var(--color-blue-205-100-50-opacity-15);
+  --lasso-stroke-color: var(--element-selected-outline-stroke-color);
+
+  --palette-entry-color: var(--color-grey-225-10-15);
+  --palette-entry-hover-color: var(--color-blue-205-100-45);
+  --palette-entry-selected-color: var(--color-blue-205-100-50);
+  --palette-separator-color: var(--color-grey-225-10-75);
+  --palette-toggle-hover-background-color: var(--color-grey-225-10-55);
+  --palette-background-color: var(--color-grey-225-10-97);
+  --palette-border-color: var(--color-grey-225-10-75);
+
+  --popup-font-family: "IBM Plex Sans", sans-serif;
+  --popup-font-size: 14px;
+  --popup-header-entry-selected-color: var(--color-blue-205-100-50);
+  --popup-header-font-weight: bolder;
+  --popup-header-group-divider-color: var(--color-grey-225-10-75);
+  --popup-background-color: var(--color-white);
+  --popup-border-color: transparent;
+  --popup-shadow-color: var(--color-black-opacity-30);
+  --popup-description-color: var(--color-grey-225-10-55);
+  --popup-no-results-color: var(--color-grey-225-10-55);
+  --popup-entry-title-color: var(--color-grey-225-10-55);
+  --popup-entry-hover-color:  var(--color-grey-225-10-95);
+  --popup-search-border-color: var(--color-grey-225-10-75);
+  --popup-search-focus-border-color: var(--color-blue-205-100-50);
+  --popup-search-focus-background-color: var(--color-blue-205-100-95);
+
+  --resizer-fill-color: var(--color-blue-205-100-45);
+  --resizer-stroke-color: var(--canvas-fill-color);
+
+  --search-font-family: "IBM Plex Sans", sans-serif;
+  --search-font-size: 14px;
+  --search-container-background-color: var(--color-white);
+  --search-shadow-color: var(--color-black-opacity-30);
+  --search-input-border-color: var(--color-grey-225-10-75);
+  --search-input-focus-border-color: var(--color-blue-205-100-50);
+  --search-input-focus-background-color: var(--color-blue-205-100-95);
+  --search-result-hover-background-color: var(--color-grey-225-10-95);
+  --search-result-secondary-color: var(--color-grey-225-10-55);
+
+  --shape-attach-allowed-stroke-color: var(--color-blue-205-100-50);
+  --shape-connect-allowed-fill-color: var(--color-grey-225-10-97);
+  --shape-drop-allowed-fill-color: var(--color-grey-225-10-97);
+  --shape-drop-not-allowed-fill-color: var(--color-red-360-100-97);
+  --shape-resize-preview-stroke-color: var(--color-blue-205-100-50);
+
+  --snap-line-stroke-color: var(--color-blue-205-100-45-opacity-30);
+
+  --space-tool-crosshair-stroke-color: var(--color-black);
+
+  --tooltip-error-background-color: var(--color-red-360-100-97);
+  --tooltip-error-border-color: var(--color-red-360-100-45);
+  --tooltip-error-color: var(--color-red-360-100-45);
+}
+
+/**
+ * outline styles
+ */
+
+.djs-outline,
+.djs-selection-outline {
+  fill: none;
+  shape-rendering: geometricPrecision;
+  stroke-width: 2px;
+}
+
+.djs-outline {
+  visibility: hidden;
+}
+
+.djs-selection-outline {
+  stroke: var(--element-selected-outline-stroke-color);
+}
+
+.djs-element.selected .djs-outline {
+  visibility: visible;
+
+  stroke: var(--element-selected-outline-stroke-color);
+}
+
+.djs-connection.selected .djs-outline {
+  display: none;
+}
+
+.djs-multi-select .djs-element.selected .djs-outline {
+  stroke: var(--element-selected-outline-secondary-stroke-color);
+  display: block;
+}
+
+.djs-shape.connect-ok .djs-visual > :nth-child(1) {
+  fill: var(--shape-connect-allowed-fill-color) !important;
+}
+
+.djs-shape.connect-not-ok .djs-visual > :nth-child(1),
+.djs-shape.drop-not-ok .djs-visual > :nth-child(1) {
+  fill: var(--shape-drop-not-allowed-fill-color) !important;
+}
+
+.djs-shape.new-parent .djs-visual > :nth-child(1) {
+  fill: var(--shape-drop-allowed-fill-color) !important;
+}
+
+svg.drop-not-ok {
+  background: var(--shape-drop-not-allowed-fill-color) !important;
+}
+
+svg.new-parent {
+  background: var(--shape-drop-allowed-fill-color) !important;
+}
+
+
+/* Override move cursor during drop and connect */
+.drop-not-ok,
+.connect-not-ok,
+.drop-not-ok *,
+.connect-not-ok * {
+  cursor: not-allowed !important;
+}
+
+.drop-ok,
+.connect-ok,
+.drop-ok *,
+.connect-ok * {
+  cursor: default !important;
+}
+
+.djs-element.attach-ok .djs-visual > :nth-child(1) {
+  stroke-width: 5px !important;
+  stroke: var(--shape-attach-allowed-stroke-color) !important;
+}
+
+.djs-frame.connect-not-ok .djs-visual > :nth-child(1),
+.djs-frame.drop-not-ok .djs-visual > :nth-child(1) {
+  stroke-width: 3px !important;
+  stroke: var(--shape-drop-not-allowed-fill-color) !important;
+  fill: none !important;
+}
+
+/**
+* Selection box style
+*
+*/
+.djs-lasso-overlay {
+  fill: var(--lasso-fill-color);
+  stroke: var(--lasso-stroke-color);
+  stroke-width: 2px;
+  shape-rendering: geometricPrecision;
+  pointer-events: none;
+}
+
+/**
+ * Resize styles
+ */
+.djs-resize-overlay {
+  fill: none;
+
+  stroke-dasharray: 5 1 3 1;
+  stroke: var(--shape-resize-preview-stroke-color);
+
+  pointer-events: none;
+}
+
+.djs-resizer-hit {
+  fill: none;
+  pointer-events: all;
+}
+
+.djs-resizer-visual {
+  fill: var(--resizer-fill-color);
+  stroke-width: 1px;
+  stroke: var(--resizer-stroke-color);
+  shape-rendering: geometricPrecision;
+}
+
+.djs-resizer:hover .djs-resizer-visual {
+  stroke: var(--resizer-stroke-color);
+  stroke-opacity: 1;
+}
+
+.djs-cursor-resize-ns,
+.djs-resizer-n,
+.djs-resizer-s {
+  cursor: ns-resize;
+}
+
+.djs-cursor-resize-ew,
+.djs-resizer-e,
+.djs-resizer-w {
+  cursor: ew-resize;
+}
+
+.djs-cursor-resize-nwse,
+.djs-resizer-nw,
+.djs-resizer-se {
+  cursor: nwse-resize;
+}
+
+.djs-cursor-resize-nesw,
+.djs-resizer-ne,
+.djs-resizer-sw {
+  cursor: nesw-resize;
+}
+
+.djs-shape.djs-resizing > .djs-outline {
+  visibility: hidden !important;
+}
+
+.djs-shape.djs-resizing > .djs-resizer {
+  visibility: hidden;
+}
+
+.djs-dragger > .djs-resizer {
+  visibility: hidden;
+}
+
+/**
+ * drag styles
+ */
+.djs-dragger * {
+  fill: none !important;
+  stroke: var(--element-dragger-color) !important;
+}
+
+.djs-dragger tspan,
+.djs-dragger text {
+  fill: var(--element-dragger-color) !important;
+  stroke: none !important;
+}
+
+.djs-dragger marker circle,
+.djs-dragger marker path,
+.djs-dragger marker polygon,
+.djs-dragger marker polyline,
+.djs-dragger marker rect {
+  fill: var(--element-dragger-color) !important;
+  stroke: none !important;
+}
+
+.djs-dragger marker text,
+.djs-dragger marker tspan {
+  fill: none !important;
+  stroke: var(--element-dragger-color) !important;
+}
+
+.djs-dragging,
+.djs-dragging > * {
+  opacity: 0.3 !important;
+  pointer-events: none !important;
+}
+
+/**
+ * no pointer events for visual
+ */
+.djs-visual,
+.djs-outline {
+  pointer-events: none;
+}
+
+.djs-element.attach-ok .djs-hit {
+  stroke-width: 60px !important;
+}
+
+/**
+ * all pointer events for hit shape
+ */
+.djs-element > .djs-hit-all,
+.djs-element > .djs-hit-no-move {
+  pointer-events: all;
+}
+
+.djs-element > .djs-hit-stroke,
+.djs-element > .djs-hit-click-stroke {
+  pointer-events: stroke;
+}
+
+/**
+ * shape / connection basic styles
+ */
+.djs-connection .djs-visual {
+  stroke-width: 2px;
+  fill: none;
+}
+
+.djs-cursor-grab {
+  cursor: -webkit-grab;
+  cursor: -moz-grab;
+  cursor: grab;
+}
+
+.djs-cursor-grabbing {
+  cursor: -webkit-grabbing;
+  cursor: -moz-grabbing;
+  cursor: grabbing;
+}
+
+.djs-cursor-crosshair {
+  cursor: crosshair;
+}
+
+.djs-cursor-move {
+  cursor: move;
+}
+
+.djs-cursor-resize-ns {
+  cursor: ns-resize;
+}
+
+.djs-cursor-resize-ew {
+  cursor: ew-resize;
+}
+
+
+/**
+ * snapping
+ */
+.djs-snap-line {
+  stroke: var(--snap-line-stroke-color);
+  stroke-linecap: round;
+  stroke-width: 2px;
+  pointer-events: none;
+}
+
+/**
+ * snapping
+ */
+.djs-crosshair {
+  stroke: var(--space-tool-crosshair-stroke-color);
+  stroke-linecap: round;
+  stroke-width: 1px;
+  pointer-events: none;
+  shape-rendering: geometricPrecision;
+  stroke-dasharray: 5, 5;
+}
+
+/**
+ * palette
+ */
+
+.djs-palette {
+  position: absolute;
+  left: 20px;
+  top: 20px;
+
+  box-sizing: border-box;
+  width: 48px;
+}
+
+.djs-palette .separator {
+  margin: 5px;
+  padding-top: 5px;
+
+  border: none;
+  border-bottom: solid 1px var(--palette-separator-color);
+
+  clear: both;
+}
+
+.djs-palette .entry:before {
+  vertical-align: initial;
+}
+
+.djs-palette .djs-palette-toggle {
+  cursor: pointer;
+}
+
+.djs-palette .entry,
+.djs-palette .djs-palette-toggle {
+  color: var(--palette-entry-color);
+  font-size: 30px;
+
+  text-align: center;
+}
+
+.djs-palette .entry {
+  float: left;
+}
+
+.djs-palette .entry img {
+  max-width: 100%;
+}
+
+.djs-palette .djs-palette-entries:after {
+  content: '';
+  display: table;
+  clear: both;
+}
+
+.djs-palette .djs-palette-toggle:hover {
+  background: var(--palette-toggle-hover-background-color);
+}
+
+.djs-palette .entry:hover {
+  color: var(--palette-entry-hover-color);
+}
+
+.djs-palette .highlighted-entry {
+  color: var(--palette-entry-selected-color) !important;
+}
+
+.djs-palette .entry,
+.djs-palette .djs-palette-toggle {
+  width: 46px;
+  height: 46px;
+  line-height: 46px;
+  cursor: default;
+}
+
+/**
+ * Palette open / two-column layout is controlled via
+ * classes on the palette. Events to hook into palette
+ * changed life-cycle are available in addition.
+ */
+.djs-palette.two-column.open {
+  width: 94px;
+}
+
+.djs-palette:not(.open) .djs-palette-entries {
+  display: none;
+}
+
+.djs-palette:not(.open) {
+  overflow: hidden;
+}
+
+.djs-palette.open .djs-palette-toggle {
+  display: none;
+}
+
+/**
+ * context-pad
+ */
+.djs-context-pad {
+  position: absolute;
+  display: none;
+  pointer-events: none;
+  line-height: 1;
+  width: 72px;
+  z-index: 100;
+}
+
+.djs-context-pad .entry {
+  width: 22px;
+  height: 22px;
+  text-align: center;
+  display: inline-block;
+  font-size: 22px;
+  margin: 0 2px 2px 0;
+
+  border-radius: 3px;
+
+  cursor: default;
+
+  background-color: var(--context-pad-entry-background-color);
+  box-shadow: 0 0 2px 1px var(--context-pad-entry-background-color);
+  pointer-events: all;
+  vertical-align: middle;
+}
+
+.djs-context-pad .entry:hover {
+  background: var(--context-pad-entry-hover-background-color);
+}
+
+.djs-context-pad.open {
+  display: block;
+}
+
+/**
+ * popup styles
+ */
+.djs-popup {
+  line-height: 1;
+  box-sizing: border-box;
+  width: min-content;
+  background: var(--popup-background-color);
+  overflow: hidden;
+  position: fixed;
+  z-index: 200;
+  box-shadow: 0px 2px 6px var(--popup-shadow-color);
+  border: solid 1px var(--popup-border-color);
+  min-width: 120px;
+  outline: none;
+  font-size: var(--popup-font-size);
+  font-family: var(--popup-font-family);
+}
+
+.djs-popup-search input {
+  width: 100%;
+  box-sizing: border-box;
+  font-size: var(--popup-font-size);
+  padding: 3px 6px 3px 28px;
+  border-radius: 2px;
+  border: solid 1px var(--popup-search-border-color);
+  line-height: 21px;
+}
+
+.djs-popup-search input:focus {
+  background-color: var(--popup-search-focus-background-color);
+  border: solid 1px var(--popup-search-focus-border-color);
+  outline: none;
+}
+
+.djs-popup-header {
+  display: flex;
+  align-items: stretch;
+  line-height: 20px;
+  margin: 10px 12px 10px 12px;
+}
+
+.djs-popup-header .entry {
+  border-radius: 2px;
+}
+
+.djs-popup button.entry {
+  padding: 0;
+  background: transparent;
+  border: 0;
+}
+
+.djs-popup-header .entry.active {
+  color: var(--popup-header-entry-selected-color);
+}
+
+.djs-popup-header .entry.disabled {
+  color: inherit;
+}
+
+.djs-popup-header-group {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.djs-popup-header-group .entry {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.djs-popup-header-group + .djs-popup-header-group:before {
+  content: '';
+  width: 1px;
+  height: 20px;
+  background: var(--popup-header-group-divider-color);
+  margin: 0 5px;
+}
+
+.djs-popup-search {
+  position: relative;
+  width: auto;
+  margin: 10px 12px;
+}
+
+.djs-popup-title {
+  font-size: var(--popup-font-size);
+  font-weight: var(--popup-header-font-weight);
+  flex: 1;
+  margin: 0;
+}
+
+.djs-popup-search-icon {
+  position: absolute;
+  left: 8px;
+  top: 7px;
+}
+
+.djs-popup-results {
+  margin: 7px 3px 7px 12px;
+  list-style: none;
+  max-height: 280px;
+  overflow: auto;
+  padding-right: 9px;
+}
+
+.djs-popup-group {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+.djs-popup-body .entry,
+.djs-popup-body .entry-header {
+  padding: 5px 7px;
+  cursor: default;
+  border-radius: 4px;
+}
+
+.djs-popup-body .entry-header {
+  font-weight: var(--popup-header-font-weight);
+  color: var(--popup-entry-title-color);
+  padding-left: 0;
+}
+
+.djs-popup [class*="icon"] .djs-popup-label,
+.djs-popup-label:not(:first-child) {
+  margin-left: .5em;
+}
+
+.djs-popup [class*="icon"]:before,
+.djs-popup-entry-icon {
+  width: 1em;
+  height: 1em;
+  display: inline-block;
+  font-size: 1.4em;
+  vertical-align: middle;
+}
+
+.djs-popup-body .entry-header:not(:first-child) {
+  margin-top: 8px;
+  margin-bottom: 2px;
+}
+
+.djs-popup-body .entry {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  height: min-content;
+}
+
+.djs-popup .entry.selected {
+  background-color: var(--popup-entry-hover-color);
+}
+
+.djs-popup-body .entry:not(:first-child) {
+  margin-top: 2px;
+}
+
+.djs-popup-entry-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  overflow: hidden;
+}
+
+.djs-popup-entry-description {
+  color: var(--popup-description-color);
+}
+
+.djs-popup-label,
+.djs-popup-entry-description {
+  line-height: 1.4em;
+}
+
+.djs-popup .entry,
+.djs-popup .entry-header {
+  margin: 1px;
+}
+
+.djs-popup-title,
+.djs-popup-label,
+.djs-popup-entry-description,
+.djs-popup .entry-header {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.djs-popup-entry-name {
+  display: flex;
+}
+
+.djs-popup-body {
+  flex-direction: column;
+  width: auto;
+}
+
+.djs-popup *::-webkit-scrollbar {
+  width: 6px;
+}
+
+.djs-popup *::-webkit-scrollbar-thumb {
+  border-radius: 3px;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.djs-popup *::-webkit-scrollbar-track {
+  box-shadow: none;
+  background: transparent;
+  margin: 0;
+  padding: 5px;
+}
+
+.djs-popup-no-results {
+  padding: 0 12px 12px 12px;
+  color: var(--popup-no-results-color);
+}
+
+.djs-popup-entry-docs {
+  flex: 0;
+  flex-direction: row;
+  align-items: center;
+  padding-left: 5px;
+  display: none;
+}
+
+.djs-popup-body .entry:hover .djs-popup-entry-docs {
+  display: flex;
+}
+
+.djs-popup-entry-docs svg {
+  vertical-align: middle;
+  margin: auto 2px auto 5px;
+}
+
+/**
+ *  palette styles
+ */
+.djs-palette {
+  background: var(--palette-background-color);
+  border: solid 1px var(--palette-border-color);
+  border-radius: 2px;
+}
+
+/**
+ * bendpoints
+ */
+.djs-segment-dragger,
+.djs-bendpoint {
+  display: none;
+}
+
+.djs-segment-dragger .djs-visual {
+  display: none;
+
+  fill: var(--bendpoint-fill-color);
+  stroke: var(--bendpoint-stroke-color);
+  stroke-width: 1px;
+  stroke-opacity: 1;
+}
+
+.djs-segment-dragger:hover .djs-visual {
+  display: block;
+}
+
+.djs-bendpoint .djs-visual {
+  fill: var(--bendpoint-fill-color);
+  stroke: var(--bendpoint-stroke-color);
+  stroke-width: 1px;
+}
+
+.djs-segment-dragger:hover,
+.djs-bendpoints.hover .djs-segment-dragger,
+.djs-bendpoints.selected .djs-segment-dragger,
+.djs-bendpoint:hover,
+.djs-bendpoints.hover .djs-bendpoint,
+.djs-bendpoints.selected .djs-bendpoint {
+  display: block;
+}
+
+.djs-drag-active .djs-bendpoints * {
+  display: none;
+}
+
+.djs-bendpoints:not(.hover) .floating {
+  display: none;
+}
+
+.djs-segment-dragger:hover .djs-visual,
+.djs-segment-dragger.djs-dragging .djs-visual,
+.djs-bendpoint:hover .djs-visual,
+.djs-bendpoint.floating .djs-visual {
+  fill: var(--bendpoint-fill-color);
+  stroke: var(--bendpoint-stroke-color);
+  stroke-opacity: 1;
+}
+
+.djs-bendpoint.floating .djs-hit {
+  pointer-events: none;
+}
+
+.djs-segment-dragger .djs-hit,
+.djs-bendpoint .djs-hit {
+  fill: none;
+  pointer-events: all;
+}
+
+.djs-segment-dragger.horizontal .djs-hit {
+  cursor: ns-resize;
+}
+
+.djs-segment-dragger.vertical .djs-hit {
+  cursor: ew-resize;
+}
+
+.djs-segment-dragger.djs-dragging .djs-hit {
+  pointer-events: none;
+}
+
+.djs-updating,
+.djs-updating > * {
+  pointer-events: none !important;
+}
+
+.djs-updating .djs-context-pad,
+.djs-updating .djs-outline,
+.djs-updating .djs-bendpoint,
+.djs-multi-select .djs-bendpoint,
+.djs-multi-select .djs-segment-dragger,
+.connect-ok .djs-bendpoint,
+.connect-not-ok .djs-bendpoint,
+.drop-ok .djs-bendpoint,
+.drop-not-ok .djs-bendpoint {
+  display: none !important;
+}
+
+.djs-segment-dragger.djs-dragging,
+.djs-bendpoint.djs-dragging {
+  display: block;
+  opacity: 1.0;
+}
+
+
+/**
+ * tooltips
+ */
+.djs-tooltip-error {
+  width: 160px;
+  padding: 6px;
+
+  background: var(--tooltip-error-background-color);
+  border: solid 1px var(--tooltip-error-border-color);
+  border-radius: 2px;
+  color: var(--tooltip-error-color);
+  font-size: 12px;
+  line-height: 16px;
+
+  opacity: 0.75;
+}
+
+.djs-tooltip-error:hover {
+  opacity: 1;
+}
+
+
+/**
+ * search pad
+ */
+.djs-search-open .djs-context-pad {
+  display: none;
+}
+
+.djs-search-open .djs-connection.selected .djs-outline {
+  display: block;
+}
+
+.djs-search-container {
+  position: absolute;
+  top: 20px;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+
+  width: 25%;
+  min-width: 300px;
+  max-width: 400px;
+  z-index: 10;
+
+  font-family: var(--search-font-family);
+  font-size: var(--search-font-size);
+  border-radius: 2px;
+  box-shadow: 0px 2px 6px var(--search-shadow-color);
+}
+
+.djs-search-container:not(.open) {
+  display: none;
+}
+
+.djs-search-input {
+  position: relative;
+}
+
+.djs-search-input svg {
+  position: absolute;
+  left: 8px;
+  top: 7px;
+}
+
+.djs-search-input input {
+  font-size: var(--search-font-size);
+  width: 100%;
+  padding: 3px 6px 3px 28px;
+  border: 1px solid var(--search-input-border-color);
+  border-radius: 2px;
+  box-sizing: border-box;
+  line-height: 21px;
+}
+
+.djs-search-input input:focus {
+  background-color: var(--search-input-focus-background-color);
+  border: solid 1px var(--search-input-focus-border-color);
+  outline: none;
+}
+
+.djs-search-results {
+  position: relative;
+  overflow-y: auto;
+  max-height: 200px;
+  background: var(--search-container-background-color);
+}
+
+.djs-search-result {
+  padding: 6px 8px;
+}
+
+.djs-search-result-primary {
+  margin: 0 0 3px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.djs-search-result-secondary {
+  font-family: monospace;
+  margin: 0;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  color: var(--search-result-secondary-color);
+}
+
+.djs-search-result:hover {
+  background: var(--search-result-hover-background-color);
+}
+
+.djs-search-result-selected {
+  background: var(--search-result-hover-background-color);
+}
+
+.djs-search-result-selected:hover {
+  background: var(--search-result-hover-background-color);
+}
+
+/**
+ * hidden styles
+ */
+.djs-element-hidden,
+.djs-element-hidden .djs-hit,
+.djs-element-hidden .djs-outline,
+.djs-label-hidden .djs-label {
+  display: none !important;
+}
+
+.djs-element .djs-hit-stroke,
+.djs-element .djs-hit-click-stroke,
+.djs-element .djs-hit-all {
+  cursor: move;
+}.bjs-container {
+  --bjs-font-family: Arial, sans-serif;
+
+  --color-grey-225-10-15: hsl(225, 10%, 15%);
+  --color-grey-225-10-35: hsl(225, 10%, 35%);
+  --color-grey-225-10-55: hsl(225, 10%, 55%);
+  --color-grey-225-10-75: hsl(225, 10%, 75%);
+  --color-grey-225-10-80: hsl(225, 10%, 80%);
+  --color-grey-225-10-85: hsl(225, 10%, 85%);
+  --color-grey-225-10-90: hsl(225, 10%, 90%);
+  --color-grey-225-10-95: hsl(225, 10%, 95%);
+  --color-grey-225-10-97: hsl(225, 10%, 97%);
+
+  --color-blue-205-100-45: hsl(205, 100%, 45%);
+  --color-blue-205-100-45-opacity-30: hsla(205, 100%, 45%, 30%);
+  --color-blue-205-100-50: hsl(205, 100%, 50%);
+  --color-blue-205-100-95: hsl(205, 100%, 95%);
+
+  --color-green-150-86-44: hsl(150, 86%, 44%);
+
+  --color-red-360-100-40: hsl(360, 100%, 40%);
+  --color-red-360-100-45: hsl(360, 100%, 45%);
+  --color-red-360-100-92: hsl(360, 100%, 92%);
+  --color-red-360-100-97: hsl(360, 100%, 97%);
+
+  --color-white: hsl(0, 0%, 100%);
+  --color-black: hsl(0, 0%, 0%);
+  --color-black-opacity-05: hsla(0, 0%, 0%, 5%);
+  --color-black-opacity-10: hsla(0, 0%, 0%, 10%);
+
+  --breadcrumbs-font-family: var(--bjs-font-family);
+  --breadcrumbs-item-color: var(--color-blue-205-100-50);
+  --breadcrumbs-arrow-color: var(--color-black);
+  --drilldown-fill-color: var(--color-white);
+  --drilldown-background-color: var(--color-blue-205-100-50);
+}
+
+.bjs-breadcrumbs {
+  position: absolute;
+  display: none;
+  flex-wrap: wrap;
+  align-items: center;
+  top: 30px;
+  left: 30px;
+  padding: 0px;
+  margin: 0px;
+  font-family: var(--breadcrumbs-font-family);
+  font-size: 16px;
+  line-height: normal;
+}
+
+.bjs-breadcrumbs-shown .bjs-breadcrumbs {
+  display: flex;
+}
+
+.djs-palette-shown .bjs-breadcrumbs {
+  left: 90px;
+}
+
+.djs-palette-shown.djs-palette-two-column .bjs-breadcrumbs {
+  left: 140px;
+}
+
+.bjs-breadcrumbs li {
+  display: inline-flex;
+  padding-bottom: 5px;
+  align-items: center;
+}
+
+.bjs-breadcrumbs li a {
+  cursor: pointer;
+  color: var(--breadcrumbs-item-color);
+}
+
+.bjs-breadcrumbs li:last-of-type a {
+  color: inherit;
+  cursor: default;
+}
+
+.bjs-breadcrumbs li:not(:first-child)::before {
+  content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" /><path d="M0 0h24v24H0z" fill="none" /></svg>');
+  padding: 0 8px;
+  color: var(--breadcrumbs-arrow-color);
+  height: 1em;
+}
+
+.bjs-breadcrumbs .bjs-crumb {
+  display: inline-block;
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.bjs-drilldown {
+  width: 20px;
+  height: 20px;
+
+  padding: 0px;
+  margin-left: -20px;
+
+  cursor: pointer;
+  border: none;
+  border-radius: 2px;
+  outline: none;
+
+  fill: var(--drilldown-fill-color);
+  background-color: var(--drilldown-background-color);
+}
+
+.bjs-drilldown-empty {
+  display: none;
+}
+
+.selected .bjs-drilldown-empty {
+  display: inherit;
+}
+
+[data-popup="align-elements"] .djs-popup-results {
+  display: flex;
+}
+
+[data-popup="align-elements"] .djs-popup-body [data-group] + [data-group] {
+  border-left: 1px solid var(--popup-border-color);
+}
+
+[data-popup="align-elements"] [data-group="align"] {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+[data-popup="align-elements"] .djs-popup-body .entry {
+  padding: 6px 8px;
+}
+
+[data-popup="align-elements"] .djs-popup-body .entry:not(:first-child) {
+  margin-top: 0;
+}
+
+[data-popup="align-elements"] .djs-popup-entry-icon {
+  display: block;
+  margin: 0;
+  height: 20px;
+  width: 20px;
+}
+</style>
+<style>
+/* Layout: lienzo BPMN protagonista con barra de estado y mandos arriba; a la derecha, paso actual, acción del responsable y registro */
+:root{--bg:#EEF1F6;--surface:#FFFFFF;--surface-2:#E6EBF2;--ink:#141D2E;--ink-2:#56627A;--line:#D2D9E4;
+  --accent:#1D5BD6;--accent-soft:#DCE6FA;--on-accent:#FFFFFF;--trail:#7FA2E8;
+  --ok:#17845A;--ok-soft:#DCF1E6;--warn:#A86F07;--warn-soft:#FAEFD2;--crit:#C42B37;--crit-soft:#F9DCDF;
+  --font-display:"Archivo","Helvetica Neue",Arial,sans-serif;--font-body:"Instrument Sans",system-ui,-apple-system,"Segoe UI",sans-serif;--font-mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;--r:10px}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#0C121C;--surface:#141C2A;--surface-2:#1B2537;--ink:#E5EBF4;--ink-2:#98A5BB;--line:#283450;
+  --accent:#78A2F4;--accent-soft:#1A2B4D;--on-accent:#0A1324;--trail:#4A6DB0;--ok:#4CC08A;--ok-soft:#12301F;--warn:#E4AC3D;--warn-soft:#382A0E;--crit:#F2737C;--crit-soft:#3C191D;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0C121C;--surface:#141C2A;--surface-2:#1B2537;--ink:#E5EBF4;--ink-2:#98A5BB;--line:#283450;
+  --accent:#78A2F4;--accent-soft:#1A2B4D;--on-accent:#0A1324;--trail:#4A6DB0;--ok:#4CC08A;--ok-soft:#12301F;--warn:#E4AC3D;--warn-soft:#382A0E;--crit:#F2737C;--crit-soft:#3C191D;color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--font-body);font-size:14px;line-height:1.45}
+button,select{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.app{max-width:1600px;margin:0 auto;padding-block:18px 40px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:grid;gap:12px}
+.eyebrow{font:500 11px/1 var(--font-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+h1{font:800 clamp(21px,2.8vw,28px)/1.1 var(--font-display);margin:8px 0 4px;letter-spacing:-.01em;text-wrap:balance}
+.lede{margin:0;color:var(--ink-2);max-width:74ch}
+.status{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.stat{background:var(--surface);padding:10px 14px;display:flex;flex-direction:column;gap:2px;min-width:0}
+.lbl{font:500 10.5px var(--font-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2)}
+.val{font:700 23px/1.1 var(--font-display);font-variant-numeric:tabular-nums}
+.val small{font:500 12.5px var(--font-body);color:var(--ink-2);margin-left:3px}
+.val.warn{color:var(--warn)} .val.crit{color:var(--crit)}
+.sub{font-size:12px;color:var(--ink-2)}
+.pill{display:inline-flex;align-items:center;gap:7px;font:700 12.5px var(--font-display);letter-spacing:.07em;text-transform:uppercase;padding:4px 10px;border-radius:999px;width:max-content}
+.pill::before{content:"";width:8px;height:8px;border-radius:50%;background:currentColor}
+.lv-verde{color:var(--ok);background:var(--ok-soft)} .lv-amarillo{color:var(--warn);background:var(--warn-soft)} .lv-rojo{color:var(--crit);background:var(--crit-soft)}
+.controls{display:flex;flex-wrap:wrap;gap:10px 20px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:10px 12px}
+.grp{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.controls label{display:flex;gap:6px;align-items:center;font-size:12.5px;color:var(--ink-2)}
+select,.btn{font:500 13px var(--font-body);color:var(--ink);background:var(--surface-2);border:1px solid var(--line);border-radius:8px;padding:7px 10px;min-height:36px}
+select{max-width:230px}
+.btn{cursor:pointer} .btn:hover{border-color:var(--accent)}
+.btn.primary{background:var(--accent);color:var(--on-accent);border-color:var(--accent);font-weight:600;min-width:92px}
+.btn.ghost{background:transparent}
+.btn.danger{color:var(--crit)}
+.work{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:12px;align-items:start}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);min-width:0;overflow:hidden}
+.card>header{padding:11px 14px;border-bottom:1px solid var(--line);display:flex;flex-wrap:wrap;gap:4px 10px;align-items:baseline;justify-content:space-between}
+.card>header h2{font:700 15px var(--font-display);margin:0}
+.card>header small{color:var(--ink-2);font-size:12px}
+.zoom{display:flex;gap:6px}
+.zoom .btn{min-height:30px;padding:4px 10px}
+#canvas{aspect-ratio:2.05/1;width:100%;min-height:420px;max-height:82vh;background:var(--surface)}
+.side{display:grid;gap:12px;min-width:0}
+.now{padding:14px;display:grid;gap:6px}
+.now .kind{font:500 10.5px var(--font-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+.now h3{font:700 19px/1.2 var(--font-display);margin:0;text-wrap:balance}
+.now p{margin:0;color:var(--ink-2)}
+.act{padding:14px;display:grid;gap:10px}
+.act p{margin:0;font-size:13px}
+.act .muted{color:var(--ink-2);font-size:12.5px}
+.act .row{display:flex;flex-wrap:wrap;gap:6px}
+.act select{max-width:100%;width:100%}
+#log{list-style:none;margin:0;padding:4px 0;max-height:360px;overflow-y:auto}
+#log li{display:grid;grid-template-columns:40px minmax(0,1fr);gap:4px 10px;padding:7px 14px;border-bottom:1px solid var(--line);font-size:12.5px;align-items:baseline}
+#log li:last-child{border-bottom:0}
+#log .lt{font:500 11.5px var(--font-mono);color:var(--ink-2);font-variant-numeric:tabular-nums;grid-row:span 2}
+.chip{font:600 10px var(--font-mono);letter-spacing:.05em;text-transform:uppercase;padding:2px 7px;border-radius:5px;background:var(--surface-2);color:var(--ink-2);width:max-content}
+.chip.c-disparo{background:var(--warn-soft);color:var(--warn)} .chip.c-escalado{background:var(--crit-soft);color:var(--crit)}
+.chip.c-acuse,.chip.c-cierre{background:var(--ok-soft);color:var(--ok)}
+.chip.c-notificacion,.chip.c-reevaluacion,.chip.c-feedback{background:var(--accent-soft);color:var(--accent)}
+/* Marcas sobre el BPMN */
+.djs-element.tk-visited .djs-visual > :first-child{stroke:var(--trail)!important;stroke-width:2.5px!important}
+.djs-element.tk-active .djs-visual > :first-child{stroke:var(--accent)!important;stroke-width:3.5px!important;fill:var(--accent-soft)!important}
+.djs-connection.tk-flow .djs-visual > path{stroke:var(--accent)!important;stroke-width:2.6px!important}
+.token{width:18px;height:18px;border-radius:50%;background:var(--accent);border:3px solid var(--surface);box-shadow:0 0 0 2px var(--accent);animation:pulse 1.4s ease-out infinite}
+.token.lv-amarillo{background:var(--warn);box-shadow:0 0 0 2px var(--warn)}
+.token.lv-rojo{background:var(--crit);box-shadow:0 0 0 2px var(--crit)}
+@keyframes pulse{0%{transform:scale(1)}50%{transform:scale(1.25)}100%{transform:scale(1)}}
+@media (prefers-reduced-motion:reduce){.token{animation:none}}
+.err{padding:16px;color:var(--ink-2)}
+@media (max-width:1100px){.work{grid-template-columns:minmax(0,1fr)} .side{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}}
+</style>
+
+</head>
+<body>
+<div class="app">
+  <header>
+    <div class="eyebrow">Command Center · HQS del Vallès · BPMN animado</div>
+    <h1>Alerta de espera hasta triaje: el proceso en marcha</h1>
+    <p class="lede">El punto recorre el BPMN según lo que pasa en la sala simulada. Los pasos ya recorridos quedan marcados. Cambia de escenario o decide tú en modo manual.</p>
+  </header>
+
+  <section class="status" aria-label="Estado de la sala">
+    <div class="stat"><span class="lbl">Hora simulada</span><span class="val" id="sClock">10:00</span><span class="sub" id="sShift"></span></div>
+    <div class="stat"><span class="lbl">Esperando triaje</span><span class="val" id="sN">0</span><span class="sub" id="sNsub"></span></div>
+    <div class="stat"><span class="lbl">Espera más larga</span><span class="val" id="sMax">0</span><span class="sub" id="sMed"></span></div>
+    <div class="stat"><span class="lbl">Triaje</span><span class="val" id="sBoxes">2</span><span class="sub" id="sLoad"></span></div>
+    <div class="stat"><span class="lbl">Alerta</span><span class="pill lv-verde" id="sLevel">Verde</span><span class="sub" id="sAlert"></span></div>
+  </section>
+
+  <section class="controls" aria-label="Mandos">
+    <div class="grp">
+      <button class="btn primary" id="bPlay" type="button">Pausar</button>
+      <button class="btn" id="bStep" type="button">+1 min</button>
+      <label for="selSpeed">Velocidad <select id="selSpeed"><option value="1200">Lenta</option><option value="600" selected>Normal</option><option value="200">Rápida</option></select></label>
+    </div>
+    <div class="grp">
+      <label for="selSc">Escenario <select id="selSc"></select></label>
+      <label for="selMode">Respuesta <select id="selMode">
+        <option value="auto">Automática (asume a los 3 min)</option>
+        <option value="manual">Manual (decides tú)</option>
+        <option value="nadie">Nadie responde</option>
+        <option value="anular">El responsable la anula</option></select></label>
+    </div>
+    <div class="grp">
+      <button class="btn" id="bBurst" type="button">+8 pacientes de golpe</button>
+      <button class="btn ghost" id="bReset" type="button">Reiniciar</button>
+    </div>
+  </section>
+
+  <main class="work">
+    <section class="card">
+      <header><h2>BPMN del flujo</h2><div class="zoom"><button class="btn" id="bFit" type="button">Ver completo</button><button class="btn" id="bIn" type="button" aria-label="Acercar">+</button><button class="btn" id="bOut" type="button" aria-label="Alejar">−</button></div></header>
+      <div id="canvas" role="img" aria-label="Diagrama BPMN animado"></div>
+    </section>
+    <aside class="side">
+      <div class="card" aria-live="polite"><header><h2>Ahora en el proceso</h2><small id="nowLane"></small></header><div class="now"><span class="kind" id="nowKind"></span><h3 id="nowTitle"></h3><p id="nowText"></p></div></div>
+      <div class="card"><header><h2>Acción del responsable</h2><small id="actSub"></small></header><div class="act" id="act"></div></div>
+      <div class="card"><header><h2>Registro</h2><small>lo más reciente arriba</small></header><ol id="log"></ol></div>
+    </aside>
+  </main>
+</div>
+
+<script type="text/xml" id="bpmnXml"><?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="Defs_AlertaTriaje" targetNamespace="http://hqs.example/command-center" exporter="Claude" exporterVersion="1.0">
+<bpmn:collaboration id="Collab"><bpmn:participant id="Pool" name="Alerta espera hasta triaje · HQS del Vallès" processRef="Proc_AlertaTriaje"/></bpmn:collaboration>
+<bpmn:process id="Proc_AlertaTriaje" name="Alerta espera hasta triaje" isExecutable="false">
+<bpmn:laneSet id="LaneSet">
+<bpmn:lane id="Lane_L1" name="Primera línea"><bpmn:flowNodeRef>U1</bpmn:flowNodeRef><bpmn:flowNodeRef>B1</bpmn:flowNodeRef><bpmn:flowNodeRef>GW3</bpmn:flowNodeRef><bpmn:flowNodeRef>U2</bpmn:flowNodeRef><bpmn:flowNodeRef>U3</bpmn:flowNodeRef><bpmn:flowNodeRef>E3</bpmn:flowNodeRef></bpmn:lane>
+<bpmn:lane id="Lane_CC" name="Command Center"><bpmn:flowNodeRef>Start</bpmn:flowNodeRef><bpmn:flowNodeRef>T1</bpmn:flowNodeRef><bpmn:flowNodeRef>GW1</bpmn:flowNodeRef><bpmn:flowNodeRef>E0</bpmn:flowNodeRef><bpmn:flowNodeRef>GW2</bpmn:flowNodeRef><bpmn:flowNodeRef>E1</bpmn:flowNodeRef><bpmn:flowNodeRef>T2</bpmn:flowNodeRef><bpmn:flowNodeRef>T3</bpmn:flowNodeRef><bpmn:flowNodeRef>T4</bpmn:flowNodeRef><bpmn:flowNodeRef>E2</bpmn:flowNodeRef><bpmn:flowNodeRef>IT1</bpmn:flowNodeRef><bpmn:flowNodeRef>T5</bpmn:flowNodeRef><bpmn:flowNodeRef>GW4</bpmn:flowNodeRef><bpmn:flowNodeRef>IT2</bpmn:flowNodeRef><bpmn:flowNodeRef>T7</bpmn:flowNodeRef><bpmn:flowNodeRef>T8</bpmn:flowNodeRef><bpmn:flowNodeRef>T9</bpmn:flowNodeRef><bpmn:flowNodeRef>GW6</bpmn:flowNodeRef><bpmn:flowNodeRef>T10</bpmn:flowNodeRef><bpmn:flowNodeRef>T11</bpmn:flowNodeRef><bpmn:flowNodeRef>T12</bpmn:flowNodeRef></bpmn:lane>
+<bpmn:lane id="Lane_L3" name="Jefatura de Urgencias"><bpmn:flowNodeRef>U4</bpmn:flowNodeRef><bpmn:flowNodeRef>B2</bpmn:flowNodeRef></bpmn:lane>
+<bpmn:lane id="Lane_L4" name="Dirección"><bpmn:flowNodeRef>U5</bpmn:flowNodeRef><bpmn:flowNodeRef>B3</bpmn:flowNodeRef></bpmn:lane>
+</bpmn:laneSet>
+<bpmn:startEvent id="Start" name="Cada minuto"><bpmn:timerEventDefinition><bpmn:timeCycle xsi:type="bpmn:tFormalExpression">R/PT1M</bpmn:timeCycle></bpmn:timerEventDefinition></bpmn:startEvent>
+<bpmn:serviceTask id="T1" name="Calcular espera hasta triaje"></bpmn:serviceTask>
+<bpmn:exclusiveGateway id="GW1" name="¿Supera umbral?"></bpmn:exclusiveGateway>
+<bpmn:endEvent id="E0" name="Sin alerta"></bpmn:endEvent>
+<bpmn:exclusiveGateway id="GW2" name="¿Se mantiene 5 min?"></bpmn:exclusiveGateway>
+<bpmn:endEvent id="E1" name="Descartada"></bpmn:endEvent>
+<bpmn:businessRuleTask id="T2" name="Elegir nivel y destinatarios según turno"></bpmn:businessRuleTask>
+<bpmn:sendTask id="T3" name="Enviar aviso por WhatsApp"></bpmn:sendTask>
+<bpmn:userTask id="U1" name="Valorar aviso"></bpmn:userTask>
+<bpmn:boundaryEvent id="B1" name="10 min" attachedToRef="U1" cancelActivity="true"><bpmn:timerEventDefinition><bpmn:timeDuration xsi:type="bpmn:tFormalExpression">PT10M</bpmn:timeDuration></bpmn:timerEventDefinition></bpmn:boundaryEvent>
+<bpmn:exclusiveGateway id="GW3" name="¿Decisión?"></bpmn:exclusiveGateway>
+<bpmn:userTask id="U2" name="Aplicar medida (abrir box, reasignar)"></bpmn:userTask>
+<bpmn:serviceTask id="T4" name="Registrar motivo y bloquear 60 min"></bpmn:serviceTask>
+<bpmn:endEvent id="E2" name="Anulada"></bpmn:endEvent>
+<bpmn:intermediateCatchEvent id="IT1" name="Silencio 20 min"><bpmn:timerEventDefinition><bpmn:timeDuration xsi:type="bpmn:tFormalExpression">PT20M</bpmn:timeDuration></bpmn:timerEventDefinition></bpmn:intermediateCatchEvent>
+<bpmn:serviceTask id="T5" name="Reevaluar indicadores"></bpmn:serviceTask>
+<bpmn:exclusiveGateway id="GW4" name="¿Resultado?"></bpmn:exclusiveGateway>
+<bpmn:intermediateCatchEvent id="IT2" name="Seguimiento 5 min"><bpmn:timerEventDefinition><bpmn:timeDuration xsi:type="bpmn:tFormalExpression">PT5M</bpmn:timeDuration></bpmn:timerEventDefinition></bpmn:intermediateCatchEvent>
+<bpmn:serviceTask id="T7" name="Cerrar alerta"></bpmn:serviceTask>
+<bpmn:sendTask id="T8" name="Solicitar feedback"></bpmn:sendTask>
+<bpmn:userTask id="U3" name="Responder feedback"></bpmn:userTask>
+<bpmn:endEvent id="E3" name="Cerrada"></bpmn:endEvent>
+<bpmn:serviceTask id="T9" name="Reactivar alerta"></bpmn:serviceTask>
+<bpmn:exclusiveGateway id="GW6" name="¿2.ª reactivación?"></bpmn:exclusiveGateway>
+<bpmn:sendTask id="T10" name="Escalar a Jefatura"></bpmn:sendTask>
+<bpmn:userTask id="U4" name="Valorar y activar refuerzo"></bpmn:userTask>
+<bpmn:boundaryEvent id="B2" name="10 min" attachedToRef="U4" cancelActivity="true"><bpmn:timerEventDefinition><bpmn:timeDuration xsi:type="bpmn:tFormalExpression">PT10M</bpmn:timeDuration></bpmn:timerEventDefinition></bpmn:boundaryEvent>
+<bpmn:sendTask id="T11" name="Escalar a Dirección"></bpmn:sendTask>
+<bpmn:userTask id="U5" name="Valorar y activar refuerzo"></bpmn:userTask>
+<bpmn:boundaryEvent id="B3" name="10 min" attachedToRef="U5" cancelActivity="true"><bpmn:timerEventDefinition><bpmn:timeDuration xsi:type="bpmn:tFormalExpression">PT10M</bpmn:timeDuration></bpmn:timerEventDefinition></bpmn:boundaryEvent>
+<bpmn:sendTask id="T12" name="Registrar incidencia y repetir aviso cada 30 min"></bpmn:sendTask>
+<bpmn:sequenceFlow id="f1" sourceRef="Start" targetRef="T1"/>
+<bpmn:sequenceFlow id="f2" sourceRef="T1" targetRef="GW1"/>
+<bpmn:sequenceFlow id="f3" sourceRef="GW1" targetRef="GW2" name="Sí"/>
+<bpmn:sequenceFlow id="f4" sourceRef="GW1" targetRef="E0" name="No"/>
+<bpmn:sequenceFlow id="f5" sourceRef="GW2" targetRef="T2" name="Sí"/>
+<bpmn:sequenceFlow id="f6" sourceRef="GW2" targetRef="E1" name="No"/>
+<bpmn:sequenceFlow id="f7" sourceRef="T2" targetRef="T3"/>
+<bpmn:sequenceFlow id="f8" sourceRef="T3" targetRef="U1"/>
+<bpmn:sequenceFlow id="f9" sourceRef="U1" targetRef="GW3"/>
+<bpmn:sequenceFlow id="f10" sourceRef="GW3" targetRef="U2" name="Asume"/>
+<bpmn:sequenceFlow id="f11" sourceRef="GW3" targetRef="T4" name="Anula con motivo"/>
+<bpmn:sequenceFlow id="f12" sourceRef="T4" targetRef="E2"/>
+<bpmn:sequenceFlow id="f13" sourceRef="U2" targetRef="IT1"/>
+<bpmn:sequenceFlow id="f14" sourceRef="IT1" targetRef="T5"/>
+<bpmn:sequenceFlow id="f15" sourceRef="T5" targetRef="GW4"/>
+<bpmn:sequenceFlow id="f16" sourceRef="GW4" targetRef="T7" name="Estable"/>
+<bpmn:sequenceFlow id="f17" sourceRef="GW4" targetRef="IT2" name="Mejora"/>
+<bpmn:sequenceFlow id="f18" sourceRef="IT2" targetRef="T5"/>
+<bpmn:sequenceFlow id="f19" sourceRef="GW4" targetRef="T9" name="Igual o peor"/>
+<bpmn:sequenceFlow id="f20" sourceRef="T7" targetRef="T8"/>
+<bpmn:sequenceFlow id="f21" sourceRef="T8" targetRef="U3"/>
+<bpmn:sequenceFlow id="f22" sourceRef="U3" targetRef="E3"/>
+<bpmn:sequenceFlow id="f23" sourceRef="T9" targetRef="GW6"/>
+<bpmn:sequenceFlow id="f24" sourceRef="GW6" targetRef="T3" name="No · nuevo aviso"/>
+<bpmn:sequenceFlow id="f25" sourceRef="GW6" targetRef="T10" name="Sí"/>
+<bpmn:sequenceFlow id="f26" sourceRef="B1" targetRef="T10"/>
+<bpmn:sequenceFlow id="f27" sourceRef="T10" targetRef="U4"/>
+<bpmn:sequenceFlow id="f28" sourceRef="U4" targetRef="IT1"/>
+<bpmn:sequenceFlow id="f29" sourceRef="B2" targetRef="T11"/>
+<bpmn:sequenceFlow id="f30" sourceRef="T11" targetRef="U5"/>
+<bpmn:sequenceFlow id="f31" sourceRef="U5" targetRef="IT1"/>
+<bpmn:sequenceFlow id="f32" sourceRef="B3" targetRef="T12"/>
+<bpmn:sequenceFlow id="f33" sourceRef="T12" targetRef="U5"/>
+<bpmn:textAnnotation id="A1"><bpmn:text>Amarillo: mediana ≥ 15 min o ≥ 10 pacientes esperando. Rojo: un paciente ≥ 30 min sin triar.</bpmn:text></bpmn:textAnnotation>
+<bpmn:association id="As_A1" sourceRef="A1" targetRef="GW1"/>
+<bpmn:textAnnotation id="A2"><bpmn:text>Laborable 8–22 h: supervisora de Urgencias (+ médico adjunto si es rojo). Noche y festivos: supervisora y médico de guardia. Máximo 3 avisos por persona y hora.</bpmn:text></bpmn:textAnnotation>
+<bpmn:association id="As_A2" sourceRef="A2" targetRef="T2"/>
+<bpmn:textAnnotation id="A3"><bpmn:text>Si pasa a rojo, se informa al médico sin pedir acuse. Si los indicadores se normalizan 10 min, se cierra antes.</bpmn:text></bpmn:textAnnotation>
+<bpmn:association id="As_A3" sourceRef="A3" targetRef="IT1"/>
+<bpmn:textAnnotation id="A4"><bpmn:text>También escala a Dirección si lleva 60 min seguidos en rojo. Jefatura y Dirección pueden anular con motivo.</bpmn:text></bpmn:textAnnotation>
+<bpmn:textAnnotation id="A5"><bpmn:text>El feedback lo responde quien asumió la alerta (primera línea, Jefatura o Dirección).</bpmn:text></bpmn:textAnnotation>
+</bpmn:process>
+<bpmndi:BPMNDiagram id="Diagram"><bpmndi:BPMNPlane id="Plane" bpmnElement="Collab">
+<bpmndi:BPMNShape id="Pool_di" bpmnElement="Pool" isHorizontal="true"><dc:Bounds x="150" y="80" width="1860" height="860"/></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="Lane_L1_di" bpmnElement="Lane_L1" isHorizontal="true"><dc:Bounds x="180" y="80" width="1830" height="180"/></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="Lane_CC_di" bpmnElement="Lane_CC" isHorizontal="true"><dc:Bounds x="180" y="260" width="1830" height="360"/></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="Lane_L3_di" bpmnElement="Lane_L3" isHorizontal="true"><dc:Bounds x="180" y="620" width="1830" height="160"/></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="Lane_L4_di" bpmnElement="Lane_L4" isHorizontal="true"><dc:Bounds x="180" y="780" width="1830" height="160"/></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="Start_di" bpmnElement="Start"><dc:Bounds x="222" y="322" width="36" height="36"/><bpmndi:BPMNLabel><dc:Bounds x="212" y="362" width="56" height="27"/></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="T1_di" bpmnElement="T1"><dc:Bounds x="280" y="300" width="120" height="80"/></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="GW1_di" bpmnElement="GW1" isMarkerVisible="true"><dc:Bounds x="450" y="315" width="50" height="50"/><bpmndi:BPMNLabel><dc:Bounds x="436" y="292" width="78" height="14"/></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="E0_di" bpmnElement="E0"><dc:Bounds x="457" y="422" width="36" height="36"/><bpmndi:BPMNLabel><dc:Bounds x="447" y="462" width="56" height="14"/></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="GW2_di" bpmnElement="GW2" isMarkerVisible="true"><dc:Bounds x="550" y="315" width="50" height="50"/><bpmndi:BPMNLabel><dc:Bounds x="540" y="280" width="70" height="27"/></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="E1_di" bpmnElement="E1"><dc:Bounds x="557" y="422" width="36" height="36"/><bpmndi:BPMNLabel><dc:Bounds x="545" y="462" width="60" height="14"/></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="T2_di" bpmnElement="T2"><dc:Bounds x="640" y="300" width="120" height="80"/></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="T3_di" bpmnElement="T3"><dc:Bounds x="790" y="300" width="120" height="80"/></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="U1_di" bpmnElement="U1"><dc:Bounds x="790" y="130" width="120" height="80"/></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="B1_di" bpmnElement="B1"><dc:Bounds x="882" y="192" width="36" height="36"/><bpmndi:BPMNLabel><dc:Bounds x="914" y="214" width="34" height="14"/></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="GW3_di" bpmnElement="GW3" isMarkerVisible="true"><dc:Bounds x="975" y="145" width="50" height="50"/><bpmndi:BPMNLabel><dc:Bounds x="970" y="126" width="60" height="14"/></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="U2_di" bpmnElement="U2"><dc:Bounds x="1070" y="130" width="120" height="80"/></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="T4_di" bpmnElement="T4"><dc:Bounds x="1040" y="400" width="120" height="80"/></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="E2_di" bpmnElement="E2"><dc:Bounds x="1182" y="422" width="36" height="36"/><bpmndi:BPMNLabel><dc:Bounds x="1178" y="462" width="45" height="14"/></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="IT1_di" bpmnElement="IT1"><dc:Bounds x="1242" y="322" width="36" height="36"/><bpmndi:BPMNLabel><dc:Bounds x="1186" y="298" width="50" height="27"/></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="T5_di" bpmnElement="T5"><dc:Bounds x="1310" y="300" width="120" height="80"/></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="GW4_di" bpmnElement="GW4" isMarkerVisible="true"><dc:Bounds x="1475" y="315" width="50" height="50"/><bpmndi:BPMNLabel><dc:Bounds x="1512" y="372" width="62" height="14"/></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="IT2_di" bpmnElement="IT2"><dc:Bounds x="1417" y="262" width="36" height="36"/><bpmndi:BPMNLabel><dc:Bounds x="1380" y="238" width="110" height="14"/></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="T7_di" bpmnElement="T7"><dc:Bounds x="1580" y="300" width="120" height="80"/></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="T8_di" bpmnElement="T8"><dc:Bounds x="1730" y="300" width="120" height="80"/></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="U3_di" bpmnElement="U3"><dc:Bounds x="1730" y="130" width="120" height="80"/></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="E3_di" bpmnElement="E3"><dc:Bounds x="1912" y="152" width="36" height="36"/><bpmndi:BPMNLabel><dc:Bounds x="1908" y="192" width="45" height="14"/></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="T9_di" bpmnElement="T9"><dc:Bounds x="1440" y="520" width="120" height="80"/></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="GW6_di" bpmnElement="GW6" isMarkerVisible="true"><dc:Bounds x="1305" y="535" width="50" height="50"/><bpmndi:BPMNLabel><dc:Bounds x="1300" y="590" width="62" height="27"/></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="T10_di" bpmnElement="T10"><dc:Bounds x="900" y="520" width="120" height="80"/></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="U4_di" bpmnElement="U4"><dc:Bounds x="900" y="660" width="120" height="80"/></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="B2_di" bpmnElement="B2"><dc:Bounds x="882" y="702" width="36" height="36"/><bpmndi:BPMNLabel><dc:Bounds x="884" y="740" width="34" height="14"/></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="T11_di" bpmnElement="T11"><dc:Bounds x="720" y="520" width="120" height="80"/></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="U5_di" bpmnElement="U5"><dc:Bounds x="720" y="820" width="120" height="80"/></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="B3_di" bpmnElement="B3"><dc:Bounds x="702" y="842" width="36" height="36"/><bpmndi:BPMNLabel><dc:Bounds x="686" y="880" width="34" height="14"/></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="T12_di" bpmnElement="T12"><dc:Bounds x="540" y="520" width="120" height="80"/></bpmndi:BPMNShape>
+<bpmndi:BPMNEdge id="f1_di" bpmnElement="f1"><di:waypoint x="258" y="340"/><di:waypoint x="280" y="340"/></bpmndi:BPMNEdge>
+<bpmndi:BPMNEdge id="f2_di" bpmnElement="f2"><di:waypoint x="400" y="340"/><di:waypoint x="450" y="340"/></bpmndi:BPMNEdge>
+<bpmndi:BPMNEdge id="f3_di" bpmnElement="f3"><di:waypoint x="500" y="340"/><di:waypoint x="550" y="340"/><bpmndi:BPMNLabel><dc:Bounds x="516" y="322" width="16" height="14"/></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+<bpmndi:BPMNEdge id="f4_di" bpmnElement="f4"><di:waypoint x="475" y="365"/><di:waypoint x="475" y="422"/><bpmndi:BPMNLabel><dc:Bounds x="482" y="384" width="18" height="14"/></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+<bpmndi:BPMNEdge id="f5_di" bpmnElement="f5"><di:waypoint x="600" y="340"/><di:waypoint x="640" y="340"/><bpmndi:BPMNLabel><dc:Bounds x="612" y="322" width="16" height="14"/></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+<bpmndi:BPMNEdge id="f6_di" bpmnElement="f6"><di:waypoint x="575" y="365"/><di:waypoint x="575" y="422"/><bpmndi:BPMNLabel><dc:Bounds x="582" y="384" width="18" height="14"/></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+<bpmndi:BPMNEdge id="f7_di" bpmnElement="f7"><di:waypoint x="760" y="340"/><di:waypoint x="790" y="340"/></bpmndi:BPMNEdge>
+<bpmndi:BPMNEdge id="f8_di" bpmnElement="f8"><di:waypoint x="850" y="300"/><di:waypoint x="850" y="210"/></bpmndi:BPMNEdge>
+<bpmndi:BPMNEdge id="f9_di" bpmnElement="f9"><di:waypoint x="910" y="170"/><di:waypoint x="975" y="170"/></bpmndi:BPMNEdge>
+<bpmndi:BPMNEdge id="f10_di" bpmnElement="f10"><di:waypoint x="1025" y="170"/><di:waypoint x="1070" y="170"/><bpmndi:BPMNLabel><dc:Bounds x="1030" y="150" width="36" height="14"/></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+<bpmndi:BPMNEdge id="f11_di" bpmnElement="f11"><di:waypoint x="1000" y="195"/><di:waypoint x="1000" y="240"/><di:waypoint x="1100" y="240"/><di:waypoint x="1100" y="400"/><bpmndi:BPMNLabel><dc:Bounds x="1008" y="222" width="110" height="14"/></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+<bpmndi:BPMNEdge id="f12_di" bpmnElement="f12"><di:waypoint x="1160" y="440"/><di:waypoint x="1182" y="440"/></bpmndi:BPMNEdge>
+<bpmndi:BPMNEdge id="f13_di" bpmnElement="f13"><di:waypoint x="1190" y="170"/><di:waypoint x="1260" y="170"/><di:waypoint x="1260" y="322"/></bpmndi:BPMNEdge>
+<bpmndi:BPMNEdge id="f14_di" bpmnElement="f14"><di:waypoint x="1278" y="340"/><di:waypoint x="1310" y="340"/></bpmndi:BPMNEdge>
+<bpmndi:BPMNEdge id="f15_di" bpmnElement="f15"><di:waypoint x="1430" y="340"/><di:waypoint x="1475" y="340"/></bpmndi:BPMNEdge>
+<bpmndi:BPMNEdge id="f16_di" bpmnElement="f16"><di:waypoint x="1525" y="340"/><di:waypoint x="1580" y="340"/><bpmndi:BPMNLabel><dc:Bounds x="1532" y="322" width="40" height="14"/></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+<bpmndi:BPMNEdge id="f17_di" bpmnElement="f17"><di:waypoint x="1500" y="315"/><di:waypoint x="1500" y="280"/><di:waypoint x="1453" y="280"/><bpmndi:BPMNLabel><dc:Bounds x="1458" y="262" width="38" height="14"/></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+<bpmndi:BPMNEdge id="f18_di" bpmnElement="f18"><di:waypoint x="1417" y="280"/><di:waypoint x="1370" y="280"/><di:waypoint x="1370" y="300"/></bpmndi:BPMNEdge>
+<bpmndi:BPMNEdge id="f19_di" bpmnElement="f19"><di:waypoint x="1500" y="365"/><di:waypoint x="1500" y="520"/><bpmndi:BPMNLabel><dc:Bounds x="1508" y="436" width="66" height="14"/></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+<bpmndi:BPMNEdge id="f20_di" bpmnElement="f20"><di:waypoint x="1700" y="340"/><di:waypoint x="1730" y="340"/></bpmndi:BPMNEdge>
+<bpmndi:BPMNEdge id="f21_di" bpmnElement="f21"><di:waypoint x="1790" y="300"/><di:waypoint x="1790" y="210"/></bpmndi:BPMNEdge>
+<bpmndi:BPMNEdge id="f22_di" bpmnElement="f22"><di:waypoint x="1850" y="170"/><di:waypoint x="1912" y="170"/></bpmndi:BPMNEdge>
+<bpmndi:BPMNEdge id="f23_di" bpmnElement="f23"><di:waypoint x="1440" y="560"/><di:waypoint x="1355" y="560"/></bpmndi:BPMNEdge>
+<bpmndi:BPMNEdge id="f24_di" bpmnElement="f24"><di:waypoint x="1330" y="535"/><di:waypoint x="1330" y="500"/><di:waypoint x="850" y="500"/><di:waypoint x="850" y="380"/><bpmndi:BPMNLabel><dc:Bounds x="1100" y="484" width="90" height="14"/></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+<bpmndi:BPMNEdge id="f25_di" bpmnElement="f25"><di:waypoint x="1305" y="560"/><di:waypoint x="1020" y="560"/><bpmndi:BPMNLabel><dc:Bounds x="1284" y="566" width="16" height="14"/></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+<bpmndi:BPMNEdge id="f26_di" bpmnElement="f26"><di:waypoint x="900" y="228"/><di:waypoint x="900" y="240"/><di:waypoint x="960" y="240"/><di:waypoint x="960" y="520"/></bpmndi:BPMNEdge>
+<bpmndi:BPMNEdge id="f27_di" bpmnElement="f27"><di:waypoint x="960" y="600"/><di:waypoint x="960" y="660"/></bpmndi:BPMNEdge>
+<bpmndi:BPMNEdge id="f28_di" bpmnElement="f28"><di:waypoint x="1020" y="700"/><di:waypoint x="1251" y="700"/><di:waypoint x="1251" y="357"/></bpmndi:BPMNEdge>
+<bpmndi:BPMNEdge id="f29_di" bpmnElement="f29"><di:waypoint x="882" y="720"/><di:waypoint x="860" y="720"/><di:waypoint x="860" y="560"/><di:waypoint x="840" y="560"/></bpmndi:BPMNEdge>
+<bpmndi:BPMNEdge id="f30_di" bpmnElement="f30"><di:waypoint x="780" y="600"/><di:waypoint x="780" y="820"/></bpmndi:BPMNEdge>
+<bpmndi:BPMNEdge id="f31_di" bpmnElement="f31"><di:waypoint x="840" y="860"/><di:waypoint x="1270" y="860"/><di:waypoint x="1270" y="357"/></bpmndi:BPMNEdge>
+<bpmndi:BPMNEdge id="f32_di" bpmnElement="f32"><di:waypoint x="702" y="860"/><di:waypoint x="600" y="860"/><di:waypoint x="600" y="600"/></bpmndi:BPMNEdge>
+<bpmndi:BPMNEdge id="f33_di" bpmnElement="f33"><di:waypoint x="540" y="560"/><di:waypoint x="520" y="560"/><di:waypoint x="520" y="920"/><di:waypoint x="780" y="920"/><di:waypoint x="780" y="900"/></bpmndi:BPMNEdge>
+<bpmndi:BPMNShape id="A1_di" bpmnElement="A1"><dc:Bounds x="222" y="96" width="270" height="58"/></bpmndi:BPMNShape>
+<bpmndi:BPMNEdge id="As_A1_di" bpmnElement="As_A1"><di:waypoint x="420" y="154"/><di:waypoint x="470" y="320"/></bpmndi:BPMNEdge>
+<bpmndi:BPMNShape id="A2_di" bpmnElement="A2"><dc:Bounds x="504" y="96" width="276" height="96"/></bpmndi:BPMNShape>
+<bpmndi:BPMNEdge id="As_A2_di" bpmnElement="As_A2"><di:waypoint x="700" y="192"/><di:waypoint x="700" y="300"/></bpmndi:BPMNEdge>
+<bpmndi:BPMNShape id="A3_di" bpmnElement="A3"><dc:Bounds x="1292" y="96" width="300" height="58"/></bpmndi:BPMNShape>
+<bpmndi:BPMNEdge id="As_A3_di" bpmnElement="As_A3"><di:waypoint x="1292" y="140"/><di:waypoint x="1268" y="324"/></bpmndi:BPMNEdge>
+<bpmndi:BPMNShape id="A4_di" bpmnElement="A4"><dc:Bounds x="1330" y="800" width="360" height="58"/></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="A5_di" bpmnElement="A5"><dc:Bounds x="1660" y="640" width="300" height="58"/></bpmndi:BPMNShape>
+</bpmndi:BPMNPlane></bpmndi:BPMNDiagram></bpmn:definitions></script>
+<script src="https://unpkg.com/bpmn-js@17.11.1/dist/bpmn-navigated-viewer.production.min.js"></script>
+<script id="sim">
+/* ===== Núcleo de simulación (sin DOM) ===== */
+const CFG_DEFAULT = {
+  amarMediana:15, amarPacientes:10, rojoMax:30, persist:5,
+  maxAvisosHora:3, ackMax:10, silencio:20, mejora:20, seguimientoCada:5,
+  escReact:2, escRojoMin:60, cierreEstable:10, bloqueoAnul:60, minTriaje:6
+};
+let cfg = Object.assign({}, CFG_DEFAULT);
+
+const SCENARIOS = {
+  rapido:  {name:'Se resuelve rápido', start:10*60, weekend:false, mode:'auto', initial:8, gap:1.2, rate:t=>t<28?30:14, maxExtra1:1},
+  reactiva:{name:'Se reactiva y escala', start:16*60, weekend:false, mode:'auto', initial:9, gap:1.3, rate:()=>38, maxExtra1:1},
+  nadie:   {name:'Nadie responde', start:11*60, weekend:false, mode:'nadie', initial:9, gap:1.3, rate:()=>27, maxExtra1:1},
+  anula:   {name:'Anulación con motivo', start:12*60, weekend:false, mode:'anular', initial:10, gap:1.2, rate:t=>t<40?32:14, maxExtra1:1},
+  noche:   {name:'Turno de noche', start:23*60, weekend:false, mode:'auto', initial:6, gap:1.5, rate:t=>t<30?22:8, maxExtra1:1, boxes:1, nurses:4}
+};
+
+const ROLES = {
+  sup: {short:'Supervisión', full:g=>g?'Supervisora de guardia del hospital':'Supervisora de enfermería de Urgencias'},
+  med: {short:'Médico', full:g=>g?'Médico de guardia de Urgencias':'Médico adjunto responsable de Urgencias'},
+  jefe:{short:'Jefatura', full:g=>g?'Jefe/a de guardia':'Jefe/a de servicio de Urgencias'},
+  dir: {short:'Dirección', full:g=>g?'Directivo/a de guardia':'Dirección asistencial'}
+};
+const ROLE_ORDER = ['sup','med','jefe','dir'];
+const REASONS = [
+  'Error de datos: la integración con el HIS no actualiza',
+  'Plan de catástrofe activado: llegada masiva ya gestionada',
+  'Ya se ha comunicado por otra vía',
+  'Otro motivo (texto libre)'
+];
+const FB_ACTIONS = ['Abrir box de triaje adicional','Reasignar enfermera a triaje','Llamar refuerzo','Ninguna: se resolvió sola'];
+
+function mulberry32(a){return function(){a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+
+let S, sc, rng;
+
+function clock(t){const a=sc.start+t;const h=Math.floor(a/60)%24, m=((a%60)+60)%60;return String(h).padStart(2,'0')+':'+String(Math.floor(m)).padStart(2,'0')}
+function shift(t){const h=Math.floor((sc.start+t)/60)%24;const fr=h>=8&&h<15?'mañana':h>=15&&h<22?'tarde':'noche';return {fr, guardia: fr==='noche'||sc.weekend}}
+function roleName(r){return ROLES[r].full(shift(S.t).guardia)}
+function up(l){return l?l.toUpperCase():''}
+function fem(l){return l==='rojo'?'roja':l==='amarillo'?'amarilla':l}
+function rank(l){return l==='rojo'?2:l==='amarillo'?1:0}
+function load(){return ((sc.enBoxes||18)+S.m.n)/S.nurses}
+function fmt1(x){return x.toFixed(1).replace('.',',')}
+
+function reset(key){
+  sc = SCENARIOS[key]; rng = mulberry32(11);
+  S = {key, t:0, waiting:[], arrAcc:0, capAcc:0, boxes:sc.boxes||2, nurses:sc.nurses||6, extraFirst:0,
+    alert:'normal', persist:0, level:'verde', m:{n:0,max:0,med:0},
+    alertLevel:null, notified:new Set(), ackDeadline:null, notifiedAt:null, round:0, roundType:'base',
+    escLevel:0, reactivations:0, redSince:null, redEscalated:false,
+    ackedBy:null, silenceEnd:null, snapshot:null, stable:0, nextCheck:null, suppressUntil:null,
+    queue:[], msgs:{sup:[],med:[],jefe:[],dir:[]}, sent:[], log:[], hist:[],
+    flash:null, hot:{}, visited:new Set(['monitor']), episode:null, lastEpisode:null, episodes:0,
+    mode:sc.mode, rateOverride:null, msgSeq:0, ver:1, lastMsgRole:null, logSeq:0};
+  for(let i=0;i<sc.initial;i++) S.waiting.push(-(sc.initial-i)*sc.gap);
+  compute(); S.hist.push({t:0, max:S.m.max, med:S.m.med});
+  addLog('Monitorización', `Escenario «${sc.name}». El Command Center recalcula la espera de cada paciente cada minuto.`);
+}
+
+function compute(){
+  const w = S.waiting.map(a=>S.t-a);
+  const n=w.length, max=n?w[0]:0, s=[...w].sort((a,b)=>a-b);
+  const med = n?(n%2?s[(n-1)/2]:(s[n/2-1]+s[n/2])/2):0;
+  S.m={n, max:Math.max(0,Math.round(max)), med:Math.max(0,Math.round(med))};
+  S.level = S.m.max>=cfg.rojoMax?'rojo':(S.m.med>=cfg.amarMediana||n>=cfg.amarPacientes)?'amarillo':'verde';
+}
+function currentRate(){return S.rateOverride!=null?S.rateOverride:sc.rate(S.t)}
+
+function addLog(cat,text,lv){S.log.unshift({id:++S.logSeq,t:S.t,cat,text,lv}); if(S.log.length>300) S.log.pop()}
+function hot(id){S.hot[id]=S.t+3}
+function flash(node){S.flash={node,t:S.t}}
+
+function recipients(level){
+  const r = level==='rojo'?['sup','med']:['sup'];
+  if(S.escLevel>=1) r.push('jefe'); if(S.escLevel>=2) r.push('dir');
+  return r;
+}
+function buildMsg(title,note,actionable){
+  return {kind:actionable?'alerta':'info', lv:S.alertLevel, title, note, pending:!!actionable,
+    lines:[`${S.m.n} pacientes esperando triaje`, `Espera más larga ${S.m.max} min · mediana ${S.m.med} min`, `Carga: ${fmt1(load())} pacientes por enfermera · ${S.boxes} box${S.boxes>1?'es':''} de triaje`]};
+}
+function sendMsg(role,msg,force){
+  const recent = S.sent.filter(s=>s.role===role && s.t>S.t-60).length;
+  if(!force && recent>=cfg.maxAvisosHora){
+    addLog('Notificación', `Aviso a ${ROLES[role].short} retenido: ya ha recibido ${recent} en la última hora (límite ${cfg.maxAvisosHora}). Irá en el siguiente resumen.`);
+    if(S.episode) S.episode.held++;
+    return false;
+  }
+  S.sent.push({role,t:S.t}); msg.id=++S.msgSeq; msg.t=S.t; S.msgs[role].push(msg); S.notified.add(role);
+  S.lastMsgRole=role; S.ver++; return true;
+}
+function outMsg(role,text){S.msgs[role].push({id:++S.msgSeq,t:S.t,kind:'out',text}); S.lastMsgRole=role; S.ver++}
+function markPending(status){
+  ROLE_ORDER.forEach(r=>S.msgs[r].forEach(m=>{if(m.kind==='alerta'&&m.pending){m.pending=false;m.status=status}})); S.ver++;
+}
+function hasPending(role){return S.msgs[role].some(m=>m.kind==='alerta'&&m.pending)}
+
+function newRound(type,roles,title,note,force,primary){
+  S.round++; S.roundType=type; S.notifiedAt=S.t; S.ackDeadline=S.t+cfg.ackMax;
+  const sentTo=[];
+  roles.forEach(r=>{if(sendMsg(r,buildMsg(title,note,true),force)) sentTo.push(r)});
+  if(sentTo.length) addLog('Notificación', `«${title}» enviada por WhatsApp a ${sentTo.map(roleName).join(' y ')}. Plazo para asumirla: ${cfg.ackMax} min.`, S.alertLevel);
+  hot('e_na'); flash(type==='esc'?'escalado':'notificacion');
+  scheduleAuto(primary||roles[0]);
+}
+function scheduleAuto(role){
+  const round=S.round;
+  if(S.mode==='auto') S.queue.push({t:S.t+3, fn:()=>{if(S.alert==='notificada'&&S.round===round&&hasPending(role)) ack(role,'asumo')}});
+  else if(S.mode==='anular') S.queue.push({t:S.t+2, fn:()=>{if(S.alert==='notificada'&&S.round===round&&hasPending(role)) annul(role,REASONS[1])}});
+}
+
+function startEpisode(){
+  S.episode={n:++S.episodes,start:S.t,fired:null,firstAck:null,ackBy:null,reacts:0,esc:0,held:0,maxLevel:S.level,outcome:null,end:null,feedback:null,reason:null,incident:false};
+  S.visited=new Set(['monitor','disparo']);
+}
+function endEpisode(outcome){
+  const e=S.episode; if(!e) return;
+  e.outcome=outcome; e.end=S.t; e.reacts=S.reactivations; e.esc=S.escLevel;
+  S.lastEpisode=e; S.episode=null;
+}
+
+function fire(L){
+  S.alert='notificada'; S.alertLevel=L; S.escLevel=0; S.reactivations=0; S.redEscalated=false; S.notified=new Set(); S.ackedBy=null;
+  S.episode.fired=S.t; S.episode.maxLevel=L;
+  hot('e_dn');
+  addLog('Disparo', `Alerta ${fem(L)} confirmada: la condición se ha mantenido ${cfg.persist} min.`, L);
+  newRound('base', recipients(L), `ALERTA ${up(fem(L))}`, null, true, 'sup');
+}
+
+function upgradeIfRed(){
+  if(S.level==='rojo' && S.alertLevel==='amarillo'){
+    S.alertLevel='rojo'; if(S.episode) S.episode.maxLevel='rojo';
+    addLog('Disparo', `Pasa a roja: un paciente lleva ${S.m.max} min sin triar.`, 'rojo');
+    const actionable = S.alert==='notificada';
+    recipients('rojo').filter(r=>!S.notified.has(r)).forEach(r=>{
+      const note = actionable?null:`Ya la ha asumido ${ROLES[S.ackedBy].short}. Solo para tu información.`;
+      if(sendMsg(r, buildMsg('PASA A ROJA', note, actionable), true))
+        addLog('Notificación', `Se avisa a ${roleName(r)} por el paso a rojo${actionable?'':' (informativo, sin pedir acuse)'}.`, 'rojo');
+    });
+  }
+}
+
+function ack(role,how){
+  if(S.alert!=='notificada') return;
+  const wait=S.t-S.notifiedAt;
+  S.ackedBy=role;
+  if(S.episode && S.episode.firstAck==null){S.episode.firstAck=S.t; S.episode.ackBy=role}
+  outMsg(role, how==='otro'?'Ya se está gestionando':'Asumo');
+  markPending(`${how==='otro'?'Gestionada':'Asumida'} por ${ROLES[role].short} · ${clock(S.t)}`);
+  S.alert='silencio'; S.silenceEnd=S.t+cfg.silencio; S.snapshot={...S.m, level:S.level}; S.stable=0;
+  hot('e_as'); flash('acuse');
+  addLog('Acuse', `${roleName(role)} ${how==='otro'?'indica que ya se está gestionando':'asume la alerta'} a los ${wait} min. Silencio hasta las ${clock(S.silenceEnd)}.`);
+  S.queue.push({t:S.t+3, fn:()=>mitigate(role)});
+}
+function mitigate(role){
+  if(role==='jefe'||role==='dir'){S.boxes+=2; addLog('Acción', `${ROLES[role].short} activa refuerzo: se abren 2 boxes de triaje más (${S.boxes} en total).`)}
+  else if(S.extraFirst<(sc.maxExtra1??1)){S.extraFirst++; S.boxes++; addLog('Acción', `Se abre un box de triaje adicional (${S.boxes} en total).`)}
+  else addLog('Acción', 'La primera línea no tiene más enfermeras para abrir otro box.');
+}
+
+function reevaluate(){
+  hot('e_sr'); flash('reevaluacion');
+  if(S.stable>=cfg.cierreEstable){close(); return}
+  if(S.level==='verde'){S.alert='estabilizando'; addLog('Reevaluación', `Indicadores por debajo del umbral. Faltan ${cfg.cierreEstable-S.stable} min estables para cerrar.`); return}
+  const sn=S.snapshot, k=1-cfg.mejora/100;
+  const improved = rank(S.level)<rank(sn.level) || S.m.max<=sn.max*k || S.m.n<=sn.n*k;
+  if(improved){
+    const was=S.alert; S.alert='seguimiento'; S.nextCheck=S.t+cfg.seguimientoCada;
+    if(was!=='seguimiento') addLog('Reevaluación', `Mejora respecto al acuse (espera más larga ${sn.max}→${S.m.max} min, ${sn.n}→${S.m.n} pacientes). Seguimiento sin avisar; revisión cada ${cfg.seguimientoCada} min.`);
+  } else reactivate(`sigue igual o peor que al asumirla (${sn.max}→${S.m.max} min, ${sn.n}→${S.m.n} pacientes)`);
+}
+function reactivate(reason){
+  S.reactivations++; hot('e_rn'); flash('reevaluacion');
+  if(S.level==='rojo'){S.alertLevel='rojo'; if(S.episode) S.episode.maxLevel='rojo'}
+  addLog('Reevaluación', `Reactivada (${S.reactivations}ª vez): ${reason}.`, S.level);
+  if(S.reactivations>=cfg.escReact && S.escLevel<1){escalate(`${S.reactivations} reactivaciones sin resolverse`,1,'e_re'); return}
+  S.alert='notificada';
+  const roles=[...new Set([...(S.ackedBy?[S.ackedBy]:[]), ...recipients(S.alertLevel)])];
+  newRound('base', roles, `REACTIVADA (${S.reactivations}ª)`, `Motivo: ${reason}`, false, S.ackedBy||'sup');
+}
+function escalate(reason,toLevel,edge){
+  const target=Math.min(2, toLevel??S.escLevel+1);
+  if(target<=S.escLevel){
+    if(S.alert==='notificada'){
+      const first=S.episode&&!S.episode.incident; if(S.episode) S.episode.incident=true;
+      addLog('Escalado', first?'Nadie la ha asumido en ningún nivel. Queda registrada como incidencia del sistema de alertas y se repite el aviso a todos cada 30 min.':'Sigue sin asumirse. Se repite el aviso.', 'rojo');
+      const all=ROLE_ORDER.filter(r=>S.notified.has(r));
+      newRound('esc', all, 'RECORDATORIO: SIN ASUMIR', 'Nadie ha asumido todavía esta alerta', false, all[all.length-1]);
+      S.ackDeadline=S.t+30;
+    }
+    return;
+  }
+  const roles=[]; for(let l=S.escLevel+1;l<=target;l++) roles.push(l===1?'jefe':'dir');
+  S.escLevel=target; S.alert='notificada';
+  hot(edge||'e_ae'); hot('e_ea');
+  addLog('Escalado', `Escala a nivel ${target} (${roles.map(roleName).join(' y ')}): ${reason}.`, S.alertLevel);
+  newRound('esc', roles, `ESCALADA · NIVEL ${target}`, `Motivo: ${reason}`, true, roles[roles.length-1]);
+}
+function close(){
+  const dur=S.t-S.episode.fired;
+  hot('e_rc'); hot('e_cm'); flash('cierre');
+  addLog('Cierre', `Indicadores bajo el umbral durante ${cfg.cierreEstable} min. Alerta cerrada a los ${dur} min del disparo.`, 'verde');
+  const r=S.ackedBy;
+  if(r){
+    sendMsg(r,{kind:'feedback', lv:'verde', title:'ALERTA CERRADA', pending:true, lines:[`Duración: ${dur} min desde el aviso`, '¿Qué hiciste y te sirvió el aviso?']}, true);
+    if(S.mode==='auto') S.queue.push({t:S.t+1, fn:()=>{const m=[...S.msgs[r]].reverse().find(x=>x.kind==='feedback'&&x.pending); if(m) feedback(r,m.id,(r==='jefe'||r==='dir')?FB_ACTIONS[2]:FB_ACTIONS[0],true)}});
+  }
+  endEpisode('Cerrada');
+  S.alert='normal'; S.persist=0; S.alertLevel=null; S.escLevel=0; S.redEscalated=false;
+}
+function feedback(role,id,accion,util){
+  const m=S.msgs[role].find(x=>x.id===id); if(!m||!m.pending) return;
+  m.pending=false; m.status='Respuesta enviada';
+  outMsg(role, `${accion} · Aviso ${util?'útil':'no útil'}`);
+  addLog('Feedback', `${ROLES[role].short}: «${accion}». Aviso ${util?'útil':'no útil'}. Se guarda para ajustar umbrales.`);
+  if(S.lastEpisode) S.lastEpisode.feedback=`${accion} · ${util?'útil':'no útil'}`;
+}
+function annul(role,reason){
+  if(S.alert!=='notificada') return;
+  outMsg(role, `Anular: ${reason}`);
+  markPending(`Anulada por ${ROLES[role].short} · ${clock(S.t)}`);
+  hot('e_nx'); flash('anulacion');
+  addLog('Anulación', `${roleName(role)} anula la alerta. Motivo: «${reason}». No volverá a saltar durante ${cfg.bloqueoAnul} min.`);
+  S.ackedBy=role; if(S.episode){S.episode.reason=reason; if(S.episode.firstAck==null){S.episode.firstAck=S.t;S.episode.ackBy=role}}
+  endEpisode('Anulada');
+  S.alert='normal'; S.suppressUntil=S.t+cfg.bloqueoAnul; S.persist=0; S.alertLevel=null; S.escLevel=0;
+  if(S.mode==='anular'){S.mode='auto'; addLog('Monitorización','En la demo, a partir de aquí la respuesta pasa a automática.')}
+}
+
+function alertStep(){
+  const L=S.level;
+  if(L==='rojo' && S.episode && S.episode.fired!=null){if(S.redSince==null) S.redSince=S.t} else S.redSince=null;
+  switch(S.alert){
+    case 'normal':
+      if(S.suppressUntil!=null){
+        if(S.t>=S.suppressUntil){S.suppressUntil=null; hot('e_xm'); addLog('Anulación','Fin del bloqueo. La alerta vuelve a vigilar.')}
+        else break;
+      }
+      if(L!=='verde'){S.alert='pre'; S.persist=1; startEpisode(); hot('e_md');
+        addLog('Disparo', `Se supera el umbral ${L} (${S.m.n} pacientes, mediana ${S.m.med} min, más larga ${S.m.max} min). Debe mantenerse ${cfg.persist} min.`, L)}
+      break;
+    case 'pre':
+      if(L==='verde'){S.alert='normal'; S.persist=0; S.episode=null; S.episodes--; addLog('Disparo','La condición desaparece antes de confirmarse. No se avisa a nadie.'); break}
+      S.persist++; if(S.persist>=cfg.persist) fire(L);
+      break;
+    case 'notificada':
+      upgradeIfRed();
+      if(S.t>=S.ackDeadline) escalate(`nadie la ha asumido en ${cfg.ackMax} min`);
+      break;
+    case 'silencio':
+      upgradeIfRed();
+      S.stable = L==='verde'?S.stable+1:0;
+      if(S.stable>=cfg.cierreEstable || S.t>=S.silenceEnd) reevaluate();
+      break;
+    case 'seguimiento':
+      upgradeIfRed();
+      if(L==='verde'){S.alert='estabilizando'; S.stable=1; addLog('Reevaluación','Indicadores por debajo del umbral. Empieza la cuenta para el cierre.')}
+      else if(S.t>=S.nextCheck) reevaluate();
+      break;
+    case 'estabilizando':
+      if(L==='verde'){S.stable++; if(S.stable>=cfg.cierreEstable) close()}
+      else reactivate('vuelve a superar el umbral durante la cuenta de cierre');
+      break;
+  }
+  if(S.episode && ['notificada','silencio','seguimiento','estabilizando'].includes(S.alert) && S.redSince!=null && S.t-S.redSince>=cfg.escRojoMin && !S.redEscalated && S.escLevel<2){
+    S.redEscalated=true; escalate(`lleva ${cfg.escRojoMin} min seguidos en rojo`,2,'e_re');
+  }
+}
+
+function activeNode(){
+  if(S.flash && S.flash.t===S.t) return S.flash.node;
+  switch(S.alert){
+    case 'normal': return S.suppressUntil!=null?'anulacion':'monitor';
+    case 'pre': return 'disparo';
+    case 'notificada': return 'acuse';
+    case 'silencio': return 'silencio';
+    case 'seguimiento': return 'reevaluacion';
+    case 'estabilizando': return 'cierre';
+  }
+  return 'monitor';
+}
+
+function tick(){
+  S.t++;
+  const due=S.queue.filter(e=>e.t<=S.t); S.queue=S.queue.filter(e=>e.t>S.t); due.forEach(e=>e.fn());
+  S.arrAcc += currentRate()/60*(0.7+0.6*rng());
+  while(S.arrAcc>=1){S.waiting.push(S.t-rng()*0.9); S.arrAcc--}
+  S.waiting.sort((a,b)=>a-b);
+  S.capAcc += S.boxes/cfg.minTriaje;
+  while(S.capAcc>=1 && S.waiting.length){S.waiting.shift(); S.capAcc--}
+  if(!S.waiting.length) S.capAcc=Math.min(S.capAcc,1);
+  compute();
+  S.hist.push({t:S.t, max:S.m.max, med:S.m.med}); if(S.hist.length>121) S.hist.shift();
+  alertStep();
+  if(S.episode) S.visited.add(activeNode());
+}
+function burst(k){
+  for(let i=0;i<k;i++) S.waiting.push(S.t-i*0.05);
+  S.waiting.sort((a,b)=>a-b);
+  addLog('Monitorización', `Llegan ${k} pacientes a la vez (por ejemplo, varias ambulancias seguidas).`);
+  compute();
+}
+</script>
+<script>
+/* ===== Traza sobre el BPMN ===== */
+function trace(...ids){ids.filter(Boolean).forEach(id=>S.trail.push(id))}
+const _alertStep=alertStep; alertStep=function(){
+  const before=S.alert, supp=S.suppressUntil;
+  _alertStep();
+  if(before==='normal'&&S.alert==='pre') trace('#new','T1','GW1','GW2');
+  if(before==='pre'&&S.alert==='normal') trace('E1','T1');
+  if(before==='seguimiento'&&S.alert==='estabilizando') trace('T5','GW4');
+  if(supp!=null&&S.suppressUntil==null) trace('Start','T1');
+};
+const _fire=fire; fire=function(L){_fire(L); trace('T2','T3','U1')};
+const _ack=ack; ack=function(role,how){
+  if(S.alert!=='notificada') return; _ack(role,how);
+  if(role==='jefe'||role==='dir') trace('IT1'); else trace('GW3','U2','IT1');
+};
+const _annul=annul; annul=function(role,reason){
+  if(S.alert!=='notificada') return; _annul(role,reason);
+  trace((role==='sup'||role==='med')?'GW3':null,'T4','E2');
+};
+const _reevaluate=reevaluate; reevaluate=function(){
+  trace('T5','GW4'); _reevaluate(); if(S.alert==='seguimiento') trace('IT2');
+};
+const _reactivate=reactivate; reactivate=function(reason){
+  const lv=S.escLevel; trace('T9','GW6'); _reactivate(reason);
+  if(S.escLevel===lv && S.alert==='notificada') trace('T3','U1');
+};
+const _escalate=escalate; escalate=function(reason,toLevel,edge){
+  const b=S.escLevel, timeout=/nadie la ha asumido/.test(reason);
+  _escalate(reason,toLevel,edge);
+  const a=S.escLevel;
+  if(a===b){ if(S.alert==='notificada') trace('B3','T12','U5'); return }
+  if(b===0&&a===1) trace(timeout?'B1':null,'T10','U4');
+  else if(b===1&&a===2) trace(timeout?'B2':null,'T11','U5');
+  else if(b===0&&a===2) trace('T10','U4','T11','U5');
+};
+const _close=close; close=function(){trace('T7','T8','U3'); _close()};
+const _feedback=feedback; feedback=function(role,id,accion,util){_feedback(role,id,accion,util); trace('E3','Start','T1')};
+
+/* ===== Textos de cada paso ===== */
+const EXPL={
+  Start:'El proceso arranca cada minuto con un temporizador.',
+  T1:'El Command Center calcula pacientes esperando, espera más larga y mediana con los datos del HIS.',
+  GW1:'Compara con los umbrales: amarillo si la mediana llega a 15 min o hay 10 pacientes; rojo si un paciente llega a 30 min.',
+  GW2:'Comprueba que la condición se mantiene 5 min para no avisar por un pico pasajero.',
+  E0:'Sin alerta.', E1:'La condición ha desaparecido antes de 5 min. No se avisa a nadie.',
+  T2:'Elige el nivel y a quién avisar según el cuadrante del turno.',
+  T3:'Envía el aviso por WhatsApp con los datos de la sala y los botones de respuesta.',
+  U1:'La primera línea valora el aviso. Tiene 10 min para asumirlo o anularlo.',
+  B1:'Han pasado 10 min sin que nadie lo asuma: el reloj saca el proceso hacia el escalado.',
+  GW3:'Quien recibe el aviso decide: asumir o anular con motivo.',
+  U2:'Aplica la medida: abrir otro box de triaje o reasignar una enfermera.',
+  T4:'Registra el motivo de la anulación y bloquea la alerta 60 min.', E2:'Alerta anulada con motivo registrado.',
+  IT1:'Silencio de 20 min para que la medida haga efecto. Si se normaliza 10 min seguidos, se cierra antes.',
+  T5:'Compara los indicadores actuales con los del momento en que se asumió.',
+  GW4:'Decide: estable → cierre; mejora → seguimiento; igual o peor → reactivar.',
+  IT2:'Seguimiento sin avisar a nadie. Vuelve a revisar en 5 min.',
+  T7:'Cierra la alerta.', T8:'Pide feedback a quien la asumió.',
+  U3:'Quien la asumió indica qué hizo y si el aviso le sirvió.', E3:'Alerta cerrada con el feedback registrado.',
+  T9:'Reactiva la alerta y suma una reactivación.',
+  GW6:'¿Es la segunda reactivación? Si lo es, escala a Jefatura; si no, vuelve a avisar.',
+  T10:'Escala a la Jefatura de Urgencias.', U4:'Jefatura valora el aviso y activa refuerzo. Tiene 10 min.',
+  B2:'Jefatura no ha respondido en 10 min.', T11:'Escala a Dirección.',
+  U5:'Dirección valora el aviso y activa refuerzo. Tiene 10 min.', B3:'Dirección no ha respondido en 10 min.',
+  T12:'Queda registrada como incidencia y el aviso se repite cada 30 min.'
+};
+const KIND={'bpmn:StartEvent':'Inicio','bpmn:EndEvent':'Fin','bpmn:ExclusiveGateway':'Decisión','bpmn:UserTask':'Tarea de una persona','bpmn:SendTask':'Envío','bpmn:ServiceTask':'Tarea automática','bpmn:BusinessRuleTask':'Regla de negocio','bpmn:BoundaryEvent':'Plazo vencido','bpmn:IntermediateCatchEvent':'Espera'};
+
+/* ===== Visor ===== */
+const xml=document.getElementById('bpmnXml').textContent.trim();
+const $=id=>document.getElementById(id);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const tok=n=>getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+let viewer=null, reg=null, canvas=null, overlays=null, flowMap={};
+let shown=0, animQ=[], animTimer=null, active=null, visited=new Set(), vflows=new Set();
+let playing=true, timer=null, lastLog=-1, actKey='', annulOpen=false;
+
+async function build(){
+  if(typeof BpmnJS==='undefined'){$('canvas').innerHTML='<p class="err">No se ha podido cargar el visor BPMN. Recarga la página.</p>';return}
+  if(viewer) viewer.destroy(); $('canvas').innerHTML='';
+  viewer=new BpmnJS({container:'#canvas',
+    bpmnRenderer:{defaultFillColor:tok('--surface'),defaultStrokeColor:tok('--ink'),defaultLabelColor:tok('--ink')},
+    textRenderer:{defaultStyle:{fontFamily:'Instrument Sans, system-ui, sans-serif',fontSize:12,fontWeight:500,lineHeight:1.2},externalStyle:{fontSize:11,lineHeight:1.2}}});
+  try{await viewer.importXML(xml)}catch(e){$('canvas').innerHTML='<p class="err">Error al leer el BPMN: '+esc(e.message)+'</p>';return}
+  reg=viewer.get('elementRegistry'); canvas=viewer.get('canvas'); overlays=viewer.get('overlays');
+  flowMap={}; reg.filter(e=>e.type==='bpmn:SequenceFlow').forEach(e=>{flowMap[e.businessObject.sourceRef.id+'>'+e.businessObject.targetRef.id]=e.id});
+  fit(); paint();
+}
+function fit(){if(canvas) canvas.zoom('fit-viewport','auto')}
+function zoom(k){if(canvas) canvas.zoom(canvas.zoom()*k)}
+
+function paint(){
+  if(!reg) return;
+  reg.getAll().forEach(e=>{canvas.removeMarker(e,'tk-visited');canvas.removeMarker(e,'tk-active');canvas.removeMarker(e,'tk-flow')});
+  visited.forEach(id=>{if(reg.get(id)&&id!==active) canvas.addMarker(id,'tk-visited')});
+  vflows.forEach(id=>{if(reg.get(id)) canvas.addMarker(id,'tk-flow')});
+  overlays.remove({type:'token'});
+  if(active&&reg.get(active)){
+    canvas.addMarker(active,'tk-active');
+    overlays.add(active,'token',{position:{top:-10,left:-10},html:`<div class="token lv-${S.alertLevel||'verde'}"></div>`});
+  }
+}
+function moveTo(id){
+  if(id==='#new'){visited=new Set(); vflows=new Set(); return}
+  if(active){visited.add(active); const f=flowMap[active+'>'+id]; if(f) vflows.add(f)}
+  active=id; paint(); renderNow();
+}
+function enqueue(){while(shown<S.trail.length) animQ.push(S.trail[shown++]); if(!animTimer) stepAnim()}
+function stepAnim(){
+  if(!animQ.length){animTimer=null;return}
+  moveTo(animQ.shift());
+  const d=Math.max(50,Math.min(320,Number($('selSpeed').value)/(animQ.length+1)));
+  animTimer=setTimeout(stepAnim,d);
+}
+
+/* ===== Paneles ===== */
+function laneOf(id){
+  if(!reg) return '';
+  const lanes=reg.filter(e=>e.type==='bpmn:Lane');
+  const l=lanes.find(x=>(x.businessObject.flowNodeRef||[]).some(n=>n.id===id));
+  return l?l.businessObject.name:'';
+}
+function renderNow(){
+  if(!active||!reg||!reg.get(active)) return;
+  const el=reg.get(active);
+  $('nowKind').textContent=KIND[el.type]||'';
+  $('nowTitle').textContent=el.businessObject.name||'';
+  $('nowText').textContent=EXPL[active]||'';
+  $('nowLane').textContent=laneOf(active);
+}
+const STATE_TXT={normal:'En vigilancia',pre:'Comprobando que se mantiene',notificada:'Avisada · esperando acuse',silencio:'Asumida · silenciada',seguimiento:'Seguimiento sin avisar',estabilizando:'Normalizándose'};
+function renderStatus(){
+  const sh=shift(S.t);
+  $('sClock').textContent=clock(S.t);
+  $('sShift').textContent=`Laborable · ${sh.fr}${sh.guardia?' (guardia)':''}`;
+  $('sN').textContent=S.m.n; $('sN').className='val'+(S.m.n>=cfg.amarPacientes?' warn':'');
+  $('sNsub').textContent=`pacientes · llegan ${Math.round(currentRate())}/h`;
+  $('sMax').innerHTML=`${S.m.max}<small>min</small>`; $('sMax').className='val'+(S.m.max>=cfg.rojoMax?' crit':'');
+  $('sMed').textContent=`mediana ${S.m.med} min`;
+  $('sBoxes').innerHTML=`${S.boxes}<small>box${S.boxes>1?'es':''}</small>`;
+  $('sLoad').textContent=`${fmt1(load())} pacientes por enfermera`;
+  const lv=S.alertLevel||S.level; $('sLevel').className='pill lv-'+lv; $('sLevel').textContent=lv;
+  let st=STATE_TXT[S.alert]||'';
+  if(S.alert==='normal'&&S.suppressUntil!=null) st=`Anulada · bloqueada hasta ${clock(S.suppressUntil)}`;
+  if(S.alert==='silencio') st+=` hasta ${clock(S.silenceEnd)}`;
+  if(S.escLevel&&S.alert!=='normal') st+=` · nivel ${S.escLevel}`;
+  $('sAlert').textContent=st;
+  if($('selMode').value!==S.mode) $('selMode').value=S.mode;
+}
+function pendingRoles(){return ROLE_ORDER.filter(r=>hasPending(r))}
+function pendingFb(){for(const r of ROLE_ORDER){const m=S.msgs[r].find(x=>x.kind==='feedback'&&x.pending); if(m) return {r,m}} return null}
+function renderAct(){
+  const pr=S.alert==='notificada'?pendingRoles():[], fb=pendingFb();
+  const key=[S.alert,pr.join(','),fb?fb.m.id:'',annulOpen,S.mode].join('|');
+  $('actSub').textContent=S.alert==='notificada'?`quedan ${Math.max(0,S.ackDeadline-S.t)} min para asumirla`:'';
+  if(key===actKey) return; actKey=key;
+  let h='';
+  if(pr.length){
+    h+=`<p>Aviso pendiente para: <b>${pr.map(r=>esc(ROLES[r].short)).join(', ')}</b>.</p>`;
+    if(annulOpen){
+      h+=`<label class="muted" for="annulSel">Motivo de anulación</label><select id="annulSel">${REASONS.map((r,i)=>`<option value="${i}">${esc(r)}</option>`).join('')}</select>
+        <div class="row"><button class="btn danger" type="button" data-a="annul-ok">Anular como ${esc(ROLES[pr[0]].short)}</button><button class="btn ghost" type="button" data-a="annul-x">Cancelar</button></div>`;
+    } else {
+      h+=`<div class="row">${pr.map(r=>`<button class="btn primary" type="button" data-a="ack" data-r="${r}">Asumo (${esc(ROLES[r].short)})</button>`).join('')}<button class="btn danger" type="button" data-a="annul">Anular con motivo…</button></div>`;
+    }
+    if(S.mode!=='manual') h+=`<p class="muted">En modo «${esc($('selMode').selectedOptions[0].textContent)}» la simulación responderá sola si no lo haces tú.</p>`;
+  } else if(fb){
+    h+=`<p>${esc(ROLES[fb.r].short)} tiene pendiente el feedback.</p><select id="fbSel" aria-label="Acción tomada">${FB_ACTIONS.map(a=>`<option>${esc(a)}</option>`).join('')}</select>
+      <div class="row"><button class="btn primary" type="button" data-a="fb" data-u="1">Me sirvió</button><button class="btn" type="button" data-a="fb" data-u="0">No me sirvió</button></div>`;
+  } else {
+    h+=`<p class="muted">No hay nada pendiente de decidir. Cuando llegue un aviso, podrás asumirlo o anularlo aquí. Pon la respuesta en «Manual» para que la simulación espere por ti.</p>`;
+  }
+  $('act').innerHTML=h;
+}
+function renderLog(){
+  if(S.logSeq===lastLog) return; lastLog=S.logSeq;
+  const cls=c=>'c-'+c.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[^a-z]/g,'');
+  $('log').innerHTML=S.log.map(l=>`<li><span class="lt">${clock(l.t)}</span><span class="chip ${cls(l.cat)}">${esc(l.cat)}</span><span>${esc(l.text)}</span></li>`).join('');
+}
+function render(){renderStatus(); renderAct(); renderLog(); enqueue()}
+
+/* ===== Bucle y eventos ===== */
+function loop(){clearTimeout(timer); if(!playing) return; timer=setTimeout(()=>{tick(); render(); loop()}, Number($('selSpeed').value))}
+function setPlaying(p){playing=p; $('bPlay').textContent=p?'Pausar':'Reanudar'; loop()}
+function start(key){
+  reset(key); S.trail=['Start','T1'];
+  shown=0; animQ=[]; clearTimeout(animTimer); animTimer=null; active=null; visited=new Set(); vflows=new Set(); lastLog=-1; actKey=''; annulOpen=false;
+  $('selSc').value=key; $('selMode').value=S.mode; paint(); render();
+}
+$('selSc').innerHTML=Object.entries(SCENARIOS).map(([k,v])=>`<option value="${k}">${v.name}</option>`).join('');
+$('selSc').addEventListener('change',e=>{start(e.target.value); setPlaying(true)});
+$('selMode').addEventListener('change',e=>{S.mode=e.target.value; addLog('Monitorización',`Modo de respuesta: ${e.target.selectedOptions[0].textContent}.`); actKey=''; render()});
+$('bPlay').addEventListener('click',()=>setPlaying(!playing));
+$('bStep').addEventListener('click',()=>{setPlaying(false); tick(); render()});
+$('selSpeed').addEventListener('change',loop);
+$('bReset').addEventListener('click',()=>{start(S.key); setPlaying(true)});
+$('bBurst').addEventListener('click',()=>{burst(8); render()});
+$('bFit').addEventListener('click',fit); $('bIn').addEventListener('click',()=>zoom(1.2)); $('bOut').addEventListener('click',()=>zoom(1/1.2));
+$('act').addEventListener('click',e=>{
+  const b=e.target.closest('[data-a]'); if(!b) return; const a=b.dataset.a;
+  if(a==='ack') ack(b.dataset.r,'asumo');
+  else if(a==='annul'){annulOpen=true}
+  else if(a==='annul-x'){annulOpen=false}
+  else if(a==='annul-ok'){const r=pendingRoles()[0]; const i=Number($('annulSel').value); annulOpen=false; if(r) annul(r,REASONS[i])}
+  else if(a==='fb'){const f=pendingFb(); if(f) feedback(f.r,f.m.id,$('fbSel').value,b.dataset.u==='1')}
+  actKey=''; render();
+});
+window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change',build);
+new MutationObserver(build).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
+let rt; window.addEventListener('resize',()=>{clearTimeout(rt); rt=setTimeout(fit,200)});
+start('rapido');
+build().then(()=>{renderNow(); setPlaying(true)});
+</script>
+</body>
+</html>

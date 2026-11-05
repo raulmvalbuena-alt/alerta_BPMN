@@ -1230,7 +1230,7 @@ select{max-width:230px}
   <header>
     <div class="eyebrow">Command Center · HQS del Vallès · BPMN animado</div>
     <h1>Retraso en triaje por alta demanda: el proceso en marcha</h1>
-    <p class="lede">Reglas v1.1 (fase 1) · dueño: equipo de desarrollo. El punto recorre el BPMN según lo que pasa en la sala simulada y los pasos ya recorridos quedan marcados. Cambia de escenario o decide tú en modo manual.</p>
+    <p class="lede">Reglas v1.2 · dueño: equipo de desarrollo. El punto recorre el BPMN según lo que pasa en la sala simulada y los pasos ya recorridos quedan marcados. Cambia de escenario o decide tú en modo manual.</p>
     <nav class="pnav" aria-label="Vistas del BPMN"><a href="index.html" aria-current="page">BPMN animado</a><a href="bpmn-estatico.html">BPMN estático</a><a href="alerta-retraso-triaje.bpmn" download>Descargar archivo .bpmn</a></nav>
   </header>
 
@@ -1276,17 +1276,17 @@ select{max-width:230px}
 </div>
 
 <script type="text/xml" id="bpmnXml"><?xml version="1.0" encoding="UTF-8"?>
-<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="Defs_AlertaTriaje" targetNamespace="http://hqs.example/command-center" exporter="Claude" exporterVersion="1.0">
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bioc="http://bpmn.io/schema/bpmn/biocolor/1.0" xmlns:color="http://www.omg.org/spec/BPMN/non-normative/color/1.0" id="Defs_AlertaTriaje" targetNamespace="http://hqs.example/command-center" exporter="Claude" exporterVersion="1.0">
 <bpmn:collaboration id="Collab"><bpmn:participant id="Pool" name="Retraso en triaje por alta demanda · Urgencias adultos · HQS del Vallès" processRef="Proc_AlertaTriaje"/></bpmn:collaboration>
 <bpmn:process id="Proc_AlertaTriaje" name="Alerta retraso en triaje" isExecutable="false">
 <bpmn:laneSet id="LaneSet">
-<bpmn:lane id="Lane_L1" name="Dinamizadora"><bpmn:flowNodeRef>U1</bpmn:flowNodeRef><bpmn:flowNodeRef>B5</bpmn:flowNodeRef><bpmn:flowNodeRef>U3</bpmn:flowNodeRef><bpmn:flowNodeRef>E3</bpmn:flowNodeRef></bpmn:lane>
-<bpmn:lane id="Lane_L2" name="Responsable de enfermería de Urgencias"><bpmn:flowNodeRef>U1b</bpmn:flowNodeRef><bpmn:flowNodeRef>B20</bpmn:flowNodeRef></bpmn:lane>
-<bpmn:lane id="Lane_CC" name="Command Center"><bpmn:flowNodeRef>Start</bpmn:flowNodeRef><bpmn:flowNodeRef>T1</bpmn:flowNodeRef><bpmn:flowNodeRef>GW1</bpmn:flowNodeRef><bpmn:flowNodeRef>E0</bpmn:flowNodeRef><bpmn:flowNodeRef>GW2</bpmn:flowNodeRef><bpmn:flowNodeRef>E1</bpmn:flowNodeRef><bpmn:flowNodeRef>GW7</bpmn:flowNodeRef><bpmn:flowNodeRef>Tinf</bpmn:flowNodeRef><bpmn:flowNodeRef>EBG</bpmn:flowNodeRef><bpmn:flowNodeRef>Cnorm</bpmn:flowNodeRef><bpmn:flowNodeRef>Einf</bpmn:flowNodeRef><bpmn:flowNodeRef>Cup</bpmn:flowNodeRef><bpmn:flowNodeRef>Ttim</bpmn:flowNodeRef><bpmn:flowNodeRef>T3</bpmn:flowNodeRef><bpmn:flowNodeRef>GW3</bpmn:flowNodeRef><bpmn:flowNodeRef>T4</bpmn:flowNodeRef><bpmn:flowNodeRef>E2</bpmn:flowNodeRef><bpmn:flowNodeRef>IT1</bpmn:flowNodeRef><bpmn:flowNodeRef>T5</bpmn:flowNodeRef><bpmn:flowNodeRef>GW4</bpmn:flowNodeRef><bpmn:flowNodeRef>T7</bpmn:flowNodeRef><bpmn:flowNodeRef>T8</bpmn:flowNodeRef><bpmn:flowNodeRef>GW8</bpmn:flowNodeRef><bpmn:flowNodeRef>T9</bpmn:flowNodeRef><bpmn:flowNodeRef>T10</bpmn:flowNodeRef></bpmn:lane>
+<bpmn:lane id="Lane_L0" name="Dinamizadora"><bpmn:flowNodeRef>Udin</bpmn:flowNodeRef><bpmn:flowNodeRef>Edin</bpmn:flowNodeRef></bpmn:lane>
+<bpmn:lane id="Lane_L1" name="Responsable de enfermería de Urgencias"><bpmn:flowNodeRef>U1</bpmn:flowNodeRef><bpmn:flowNodeRef>Brem</bpmn:flowNodeRef><bpmn:flowNodeRef>Trem</bpmn:flowNodeRef><bpmn:flowNodeRef>Erem</bpmn:flowNodeRef><bpmn:flowNodeRef>Besc</bpmn:flowNodeRef><bpmn:flowNodeRef>U3</bpmn:flowNodeRef><bpmn:flowNodeRef>E3</bpmn:flowNodeRef></bpmn:lane>
+<bpmn:lane id="Lane_CC" name="Command Center"><bpmn:flowNodeRef>Start</bpmn:flowNodeRef><bpmn:flowNodeRef>T1</bpmn:flowNodeRef><bpmn:flowNodeRef>GW1</bpmn:flowNodeRef><bpmn:flowNodeRef>E0</bpmn:flowNodeRef><bpmn:flowNodeRef>GW2</bpmn:flowNodeRef><bpmn:flowNodeRef>E1</bpmn:flowNodeRef><bpmn:flowNodeRef>GW7</bpmn:flowNodeRef><bpmn:flowNodeRef>Tinf</bpmn:flowNodeRef><bpmn:flowNodeRef>EBG</bpmn:flowNodeRef><bpmn:flowNodeRef>Cnorm</bpmn:flowNodeRef><bpmn:flowNodeRef>Einf</bpmn:flowNodeRef><bpmn:flowNodeRef>Cup</bpmn:flowNodeRef><bpmn:flowNodeRef>Ttim</bpmn:flowNodeRef><bpmn:flowNodeRef>T3</bpmn:flowNodeRef><bpmn:flowNodeRef>GW3</bpmn:flowNodeRef><bpmn:flowNodeRef>T4</bpmn:flowNodeRef><bpmn:flowNodeRef>E2</bpmn:flowNodeRef><bpmn:flowNodeRef>IT1</bpmn:flowNodeRef><bpmn:flowNodeRef>T5</bpmn:flowNodeRef><bpmn:flowNodeRef>GW4</bpmn:flowNodeRef><bpmn:flowNodeRef>GW9</bpmn:flowNodeRef><bpmn:flowNodeRef>IT2</bpmn:flowNodeRef><bpmn:flowNodeRef>T7</bpmn:flowNodeRef><bpmn:flowNodeRef>T8</bpmn:flowNodeRef><bpmn:flowNodeRef>T10</bpmn:flowNodeRef></bpmn:lane>
 <bpmn:lane id="Lane_L3" name="Dirección de Enfermería"><bpmn:flowNodeRef>U4</bpmn:flowNodeRef></bpmn:lane>
 </bpmn:laneSet>
 <bpmn:startEvent id="Start" name="Cada minuto"><bpmn:timerEventDefinition><bpmn:timeCycle xsi:type="bpmn:tFormalExpression">R/PT1M</bpmn:timeCycle></bpmn:timerEventDefinition></bpmn:startEvent>
-<bpmn:serviceTask id="T1" name="Calcular mediana y espera más larga"></bpmn:serviceTask>
+<bpmn:serviceTask id="T1" name="Vigilar mediana y espera más larga"></bpmn:serviceTask>
 <bpmn:exclusiveGateway id="GW1" name="¿Supera umbral?"></bpmn:exclusiveGateway>
 <bpmn:endEvent id="E0" name="Sin alerta"></bpmn:endEvent>
 <bpmn:exclusiveGateway id="GW2" name="¿Se mantiene 2 min?"></bpmn:exclusiveGateway>
@@ -1296,25 +1296,28 @@ select{max-width:230px}
 <bpmn:eventBasedGateway id="EBG" name=""></bpmn:eventBasedGateway>
 <bpmn:intermediateCatchEvent id="Cnorm" name="Mediana ≤ 5 min durante 5 min"><bpmn:conditionalEventDefinition><bpmn:condition xsi:type="bpmn:tFormalExpression">mediana &lt;= 5 durante 5 min</bpmn:condition></bpmn:conditionalEventDefinition></bpmn:intermediateCatchEvent>
 <bpmn:endEvent id="Einf" name="Cerrada sin intervención"></bpmn:endEvent>
-<bpmn:intermediateCatchEvent id="Cup" name="Más de 3 o uno &gt; 15 min"><bpmn:conditionalEventDefinition><bpmn:condition xsi:type="bpmn:tFormalExpression">pacientes &gt; 3 o espera maxima &gt; 15</bpmn:condition></bpmn:conditionalEventDefinition></bpmn:intermediateCatchEvent>
+<bpmn:intermediateCatchEvent id="Cup" name="Más de 6 o uno &gt; 15 min"><bpmn:conditionalEventDefinition><bpmn:condition xsi:type="bpmn:tFormalExpression">pacientes &gt; 6 o espera maxima &gt; 15</bpmn:condition></bpmn:conditionalEventDefinition></bpmn:intermediateCatchEvent>
 <bpmn:intermediateCatchEvent id="Ttim" name="Dura 15 min"><bpmn:timerEventDefinition><bpmn:timeDuration xsi:type="bpmn:tFormalExpression">PT15M</bpmn:timeDuration></bpmn:timerEventDefinition></bpmn:intermediateCatchEvent>
-<bpmn:sendTask id="T3" name="Enviar alerta a la dinamizadora"></bpmn:sendTask>
-<bpmn:userTask id="U1" name="Valorar alerta"></bpmn:userTask>
-<bpmn:boundaryEvent id="B5" name="5 min sin acuse" attachedToRef="U1" cancelActivity="true"><bpmn:timerEventDefinition><bpmn:timeDuration xsi:type="bpmn:tFormalExpression">PT5M</bpmn:timeDuration></bpmn:timerEventDefinition></bpmn:boundaryEvent>
-<bpmn:userTask id="U1b" name="Valorar alerta"></bpmn:userTask>
-<bpmn:boundaryEvent id="B20" name="Sostenida 20 min" attachedToRef="U1b" cancelActivity="true"><bpmn:timerEventDefinition><bpmn:timeDuration xsi:type="bpmn:tFormalExpression">PT15M</bpmn:timeDuration></bpmn:timerEventDefinition></bpmn:boundaryEvent>
+<bpmn:sendTask id="T3" name="Enviar alerta a la responsable (copia a la dinamizadora)"></bpmn:sendTask>
+<bpmn:userTask id="Udin" name="Acudir a la sala y priorizar"></bpmn:userTask>
+<bpmn:endEvent id="Edin" name="En sala"></bpmn:endEvent>
+<bpmn:userTask id="U1" name="Asumir y activar 2.º box de triaje"></bpmn:userTask>
+<bpmn:boundaryEvent id="Brem" name="5 min" attachedToRef="U1" cancelActivity="false"><bpmn:timerEventDefinition><bpmn:timeDuration xsi:type="bpmn:tFormalExpression">PT5M</bpmn:timeDuration></bpmn:timerEventDefinition></bpmn:boundaryEvent>
+<bpmn:intermediateThrowEvent id="Trem" name="Recordatorio"><bpmn:messageEventDefinition/></bpmn:intermediateThrowEvent>
+<bpmn:endEvent id="Erem" name=""></bpmn:endEvent>
+<bpmn:boundaryEvent id="Besc" name="10 min sin acuse" attachedToRef="U1" cancelActivity="true"><bpmn:timerEventDefinition><bpmn:timeDuration xsi:type="bpmn:tFormalExpression">PT10M</bpmn:timeDuration></bpmn:timerEventDefinition></bpmn:boundaryEvent>
 <bpmn:exclusiveGateway id="GW3" name="¿Respuesta?"></bpmn:exclusiveGateway>
 <bpmn:serviceTask id="T4" name="Registrar motivo y bloquear 60 min"></bpmn:serviceTask>
 <bpmn:endEvent id="E2" name="Anulada"></bpmn:endEvent>
-<bpmn:intermediateCatchEvent id="IT1" name="Silencio 10 min"><bpmn:timerEventDefinition><bpmn:timeDuration xsi:type="bpmn:tFormalExpression">PT10M</bpmn:timeDuration></bpmn:timerEventDefinition></bpmn:intermediateCatchEvent>
+<bpmn:intermediateCatchEvent id="IT1" name="Silencio 20 min"><bpmn:timerEventDefinition><bpmn:timeDuration xsi:type="bpmn:tFormalExpression">PT20M</bpmn:timeDuration></bpmn:timerEventDefinition></bpmn:intermediateCatchEvent>
 <bpmn:serviceTask id="T5" name="Reevaluar"></bpmn:serviceTask>
 <bpmn:exclusiveGateway id="GW4" name="¿Resultado?"></bpmn:exclusiveGateway>
+<bpmn:exclusiveGateway id="GW9" name="¿Mejora? (1.ª vez)"></bpmn:exclusiveGateway>
+<bpmn:intermediateCatchEvent id="IT2" name="Seguimiento 10 min"><bpmn:timerEventDefinition><bpmn:timeDuration xsi:type="bpmn:tFormalExpression">PT10M</bpmn:timeDuration></bpmn:timerEventDefinition></bpmn:intermediateCatchEvent>
 <bpmn:serviceTask id="T7" name="Cerrar alerta"></bpmn:serviceTask>
 <bpmn:sendTask id="T8" name="Solicitar feedback"></bpmn:sendTask>
 <bpmn:userTask id="U3" name="Responder feedback"></bpmn:userTask>
 <bpmn:endEvent id="E3" name="Cerrada"></bpmn:endEvent>
-<bpmn:exclusiveGateway id="GW8" name="¿Sostenida 20 min?"></bpmn:exclusiveGateway>
-<bpmn:sendTask id="T9" name="Reactivar y volver a avisar"></bpmn:sendTask>
 <bpmn:sendTask id="T10" name="Escalar a Dirección de Enfermería"></bpmn:sendTask>
 <bpmn:userTask id="U4" name="Valorar y enviar refuerzo"></bpmn:userTask>
 <bpmn:sequenceFlow id="f1" sourceRef="Start" targetRef="T1"/>
@@ -1332,136 +1335,145 @@ select{max-width:230px}
 <bpmn:sequenceFlow id="f13" sourceRef="EBG" targetRef="Ttim"/>
 <bpmn:sequenceFlow id="f14" sourceRef="Cup" targetRef="T3"/>
 <bpmn:sequenceFlow id="f15" sourceRef="Ttim" targetRef="T3"/>
-<bpmn:sequenceFlow id="f16" sourceRef="T3" targetRef="U1"/>
-<bpmn:sequenceFlow id="f17" sourceRef="B5" targetRef="U1b" name="Avisar a la responsable"/>
-<bpmn:sequenceFlow id="f18" sourceRef="U1" targetRef="GW3"/>
-<bpmn:sequenceFlow id="f19" sourceRef="U1b" targetRef="GW3"/>
-<bpmn:sequenceFlow id="f20" sourceRef="GW3" targetRef="IT1" name="Asume"/>
-<bpmn:sequenceFlow id="f21" sourceRef="GW3" targetRef="T4" name="Anula con motivo"/>
-<bpmn:sequenceFlow id="f22" sourceRef="T4" targetRef="E2"/>
-<bpmn:sequenceFlow id="f23" sourceRef="IT1" targetRef="T5"/>
-<bpmn:sequenceFlow id="f24" sourceRef="T5" targetRef="GW4"/>
-<bpmn:sequenceFlow id="f25" sourceRef="GW4" targetRef="T7" name="Cierre 5 min"/>
-<bpmn:sequenceFlow id="f26" sourceRef="GW4" targetRef="GW8" name="Persiste"/>
-<bpmn:sequenceFlow id="f27" sourceRef="GW8" targetRef="T9" name="No"/>
-<bpmn:sequenceFlow id="f28" sourceRef="GW8" targetRef="T10" name="Sí"/>
-<bpmn:sequenceFlow id="f29" sourceRef="T9" targetRef="U1" name="Nuevo aviso"/>
-<bpmn:sequenceFlow id="f30" sourceRef="B20" targetRef="T10"/>
-<bpmn:sequenceFlow id="f31" sourceRef="T10" targetRef="U4"/>
-<bpmn:sequenceFlow id="f32" sourceRef="U4" targetRef="IT1"/>
-<bpmn:sequenceFlow id="f33" sourceRef="T7" targetRef="T8"/>
-<bpmn:sequenceFlow id="f34" sourceRef="T8" targetRef="U3"/>
-<bpmn:sequenceFlow id="f35" sourceRef="U3" targetRef="E3"/>
-<bpmn:textAnnotation id="A1"><bpmn:text>Umbral: mediana &gt; 6 min o un paciente &gt; 15 min sin triar, durante 2 min. Alerta si hay más de 3 pacientes o alguien pasa de 15 min. Si no, informativa: a la dinamizadora y a la responsable, sin acuse.</bpmn:text></bpmn:textAnnotation>
+<bpmn:sequenceFlow id="f16" sourceRef="T3" targetRef="U1" name="Dueña"/>
+<bpmn:sequenceFlow id="f17" sourceRef="T3" targetRef="Udin" name="En copia"/>
+<bpmn:sequenceFlow id="f18" sourceRef="Udin" targetRef="Edin"/>
+<bpmn:sequenceFlow id="f19" sourceRef="Brem" targetRef="Trem" name="Avisar de nuevo"/>
+<bpmn:sequenceFlow id="f20" sourceRef="Trem" targetRef="Erem"/>
+<bpmn:sequenceFlow id="f21" sourceRef="U1" targetRef="GW3"/>
+<bpmn:sequenceFlow id="f22" sourceRef="GW3" targetRef="IT1" name="Asume"/>
+<bpmn:sequenceFlow id="f23" sourceRef="GW3" targetRef="T4" name="Anula con motivo"/>
+<bpmn:sequenceFlow id="f24" sourceRef="T4" targetRef="E2"/>
+<bpmn:sequenceFlow id="f25" sourceRef="IT1" targetRef="T5"/>
+<bpmn:sequenceFlow id="f26" sourceRef="T5" targetRef="GW4"/>
+<bpmn:sequenceFlow id="f27" sourceRef="GW4" targetRef="T7" name="Cierre 5 min"/>
+<bpmn:sequenceFlow id="f28" sourceRef="GW4" targetRef="GW9" name="Persiste"/>
+<bpmn:sequenceFlow id="f29" sourceRef="GW9" targetRef="IT2" name="Sí"/>
+<bpmn:sequenceFlow id="f30" sourceRef="IT2" targetRef="T5"/>
+<bpmn:sequenceFlow id="f31" sourceRef="GW9" targetRef="T10" name="No"/>
+<bpmn:sequenceFlow id="f32" sourceRef="Besc" targetRef="T10"/>
+<bpmn:sequenceFlow id="f33" sourceRef="T10" targetRef="U4"/>
+<bpmn:sequenceFlow id="f34" sourceRef="U4" targetRef="IT1"/>
+<bpmn:sequenceFlow id="f35" sourceRef="T7" targetRef="T8"/>
+<bpmn:sequenceFlow id="f36" sourceRef="T8" targetRef="U3"/>
+<bpmn:sequenceFlow id="f37" sourceRef="U3" targetRef="E3"/>
+<bpmn:textAnnotation id="A1"><bpmn:text>Vigila la mediana: salta si pasa de 6 min (o un paciente &gt; 15), mantenido 2 min. Alerta con más de 6 pacientes o alguien &gt; 15 min. Si no, informativa a la dinamizadora y a la responsable, sin acuse.</bpmn:text></bpmn:textAnnotation>
 <bpmn:association id="As_A1" sourceRef="A1" targetRef="GW1"/>
-<bpmn:textAnnotation id="A3"><bpmn:text>Dueño: equipo de desarrollo · reglas v1.1 (fase 1). Destinatarios por cargo.</bpmn:text></bpmn:textAnnotation>
-<bpmn:textAnnotation id="A4"><bpmn:text>Si Dirección de Enfermería no responde en 5 min, queda como incidencia y se repite el aviso cada 30 min.</bpmn:text></bpmn:textAnnotation>
-<bpmn:textAnnotation id="A5"><bpmn:text>La dinamizadora puede asumirla también después de avisar a la responsable. Cierre con histéresis: mediana ≤ 5 min y nadie &gt; 15.</bpmn:text></bpmn:textAnnotation>
+<bpmn:textAnnotation id="A3"><bpmn:text>Dueño: equipo de desarrollo · reglas v1.2. Destinatarios por cargo.</bpmn:text></bpmn:textAnnotation>
+<bpmn:textAnnotation id="A4"><bpmn:text>Si Dirección no responde en 5 min: incidencia y aviso cada 30 min. Si persiste tras su refuerzo, se reactiva a Dirección y a la responsable.</bpmn:text></bpmn:textAnnotation>
+<bpmn:textAnnotation id="A5"><bpmn:text>El feedback lo da quien asumió la alerta. Cierre con histéresis: mediana ≤ 5 min durante 5 min y nadie &gt; 15.</bpmn:text></bpmn:textAnnotation>
 </bpmn:process>
 <bpmndi:BPMNDiagram id="Diagram"><bpmndi:BPMNPlane id="Plane" bpmnElement="Collab">
-<bpmndi:BPMNShape id="Pool_di" bpmnElement="Pool" isHorizontal="true"><dc:Bounds x="150" y="80" width="1830" height="860"/></bpmndi:BPMNShape>
-<bpmndi:BPMNShape id="Lane_L1_di" bpmnElement="Lane_L1" isHorizontal="true"><dc:Bounds x="180" y="80" width="1800" height="160"/></bpmndi:BPMNShape>
-<bpmndi:BPMNShape id="Lane_L2_di" bpmnElement="Lane_L2" isHorizontal="true"><dc:Bounds x="180" y="240" width="1800" height="150"/></bpmndi:BPMNShape>
-<bpmndi:BPMNShape id="Lane_CC_di" bpmnElement="Lane_CC" isHorizontal="true"><dc:Bounds x="180" y="390" width="1800" height="400"/></bpmndi:BPMNShape>
-<bpmndi:BPMNShape id="Lane_L3_di" bpmnElement="Lane_L3" isHorizontal="true"><dc:Bounds x="180" y="790" width="1800" height="150"/></bpmndi:BPMNShape>
-<bpmndi:BPMNShape id="Start_di" bpmnElement="Start"><dc:Bounds x="222" y="482" width="36" height="36"/><bpmndi:BPMNLabel><dc:Bounds x="212" y="522" width="56" height="27"/></bpmndi:BPMNLabel></bpmndi:BPMNShape>
-<bpmndi:BPMNShape id="T1_di" bpmnElement="T1"><dc:Bounds x="280" y="460" width="120" height="80"/></bpmndi:BPMNShape>
-<bpmndi:BPMNShape id="GW1_di" bpmnElement="GW1" isMarkerVisible="true"><dc:Bounds x="450" y="475" width="50" height="50"/><bpmndi:BPMNLabel><dc:Bounds x="396" y="440" width="78" height="14"/></bpmndi:BPMNLabel></bpmndi:BPMNShape>
-<bpmndi:BPMNShape id="E0_di" bpmnElement="E0"><dc:Bounds x="457" y="582" width="36" height="36"/><bpmndi:BPMNLabel><dc:Bounds x="447" y="622" width="56" height="14"/></bpmndi:BPMNLabel></bpmndi:BPMNShape>
-<bpmndi:BPMNShape id="GW2_di" bpmnElement="GW2" isMarkerVisible="true"><dc:Bounds x="550" y="475" width="50" height="50"/><bpmndi:BPMNLabel><dc:Bounds x="540" y="444" width="70" height="27"/></bpmndi:BPMNLabel></bpmndi:BPMNShape>
-<bpmndi:BPMNShape id="E1_di" bpmnElement="E1"><dc:Bounds x="557" y="582" width="36" height="36"/><bpmndi:BPMNLabel><dc:Bounds x="545" y="622" width="60" height="14"/></bpmndi:BPMNLabel></bpmndi:BPMNShape>
-<bpmndi:BPMNShape id="GW7_di" bpmnElement="GW7" isMarkerVisible="true"><dc:Bounds x="650" y="475" width="50" height="50"/><bpmndi:BPMNLabel><dc:Bounds x="700" y="528" width="40" height="14"/></bpmndi:BPMNLabel></bpmndi:BPMNShape>
-<bpmndi:BPMNShape id="Tinf_di" bpmnElement="Tinf"><dc:Bounds x="615" y="580" width="120" height="80"/></bpmndi:BPMNShape>
-<bpmndi:BPMNShape id="EBG_di" bpmnElement="EBG"><dc:Bounds x="650" y="695" width="50" height="50"/></bpmndi:BPMNShape>
-<bpmndi:BPMNShape id="Cnorm_di" bpmnElement="Cnorm"><dc:Bounds x="572" y="702" width="36" height="36"/><bpmndi:BPMNLabel><dc:Bounds x="548" y="672" width="84" height="40"/></bpmndi:BPMNLabel></bpmndi:BPMNShape>
-<bpmndi:BPMNShape id="Einf_di" bpmnElement="Einf"><dc:Bounds x="482" y="702" width="36" height="36"/><bpmndi:BPMNLabel><dc:Bounds x="460" y="742" width="80" height="27"/></bpmndi:BPMNLabel></bpmndi:BPMNShape>
-<bpmndi:BPMNShape id="Cup_di" bpmnElement="Cup"><dc:Bounds x="752" y="672" width="36" height="36"/><bpmndi:BPMNLabel><dc:Bounds x="790" y="672" width="64" height="27"/></bpmndi:BPMNLabel></bpmndi:BPMNShape>
-<bpmndi:BPMNShape id="Ttim_di" bpmnElement="Ttim"><dc:Bounds x="752" y="747" width="36" height="36"/><bpmndi:BPMNLabel><dc:Bounds x="796" y="745" width="60" height="14"/></bpmndi:BPMNLabel></bpmndi:BPMNShape>
-<bpmndi:BPMNShape id="T3_di" bpmnElement="T3"><dc:Bounds x="760" y="460" width="120" height="80"/></bpmndi:BPMNShape>
-<bpmndi:BPMNShape id="U1_di" bpmnElement="U1"><dc:Bounds x="760" y="120" width="120" height="80"/></bpmndi:BPMNShape>
-<bpmndi:BPMNShape id="B5_di" bpmnElement="B5"><dc:Bounds x="862" y="172" width="36" height="36"/><bpmndi:BPMNLabel><dc:Bounds x="896" y="210" width="58" height="27"/></bpmndi:BPMNLabel></bpmndi:BPMNShape>
-<bpmndi:BPMNShape id="U1b_di" bpmnElement="U1b"><dc:Bounds x="900" y="275" width="120" height="80"/></bpmndi:BPMNShape>
-<bpmndi:BPMNShape id="B20_di" bpmnElement="B20"><dc:Bounds x="962" y="337" width="36" height="36"/><bpmndi:BPMNLabel><dc:Bounds x="990" y="374" width="60" height="27"/></bpmndi:BPMNLabel></bpmndi:BPMNShape>
-<bpmndi:BPMNShape id="GW3_di" bpmnElement="GW3" isMarkerVisible="true"><dc:Bounds x="1055" y="475" width="50" height="50"/><bpmndi:BPMNLabel><dc:Bounds x="1004" y="466" width="62" height="14"/></bpmndi:BPMNLabel></bpmndi:BPMNShape>
-<bpmndi:BPMNShape id="T4_di" bpmnElement="T4"><dc:Bounds x="1090" y="560" width="120" height="80"/></bpmndi:BPMNShape>
-<bpmndi:BPMNShape id="E2_di" bpmnElement="E2"><dc:Bounds x="1257" y="582" width="36" height="36"/><bpmndi:BPMNLabel><dc:Bounds x="1253" y="622" width="45" height="14"/></bpmndi:BPMNLabel></bpmndi:BPMNShape>
-<bpmndi:BPMNShape id="IT1_di" bpmnElement="IT1"><dc:Bounds x="1212" y="482" width="36" height="36"/><bpmndi:BPMNLabel><dc:Bounds x="1160" y="456" width="60" height="27"/></bpmndi:BPMNLabel></bpmndi:BPMNShape>
-<bpmndi:BPMNShape id="T5_di" bpmnElement="T5"><dc:Bounds x="1280" y="460" width="120" height="80"/></bpmndi:BPMNShape>
-<bpmndi:BPMNShape id="GW4_di" bpmnElement="GW4" isMarkerVisible="true"><dc:Bounds x="1445" y="475" width="50" height="50"/><bpmndi:BPMNLabel><dc:Bounds x="1440" y="446" width="62" height="14"/></bpmndi:BPMNLabel></bpmndi:BPMNShape>
-<bpmndi:BPMNShape id="T7_di" bpmnElement="T7"><dc:Bounds x="1550" y="460" width="120" height="80"/></bpmndi:BPMNShape>
-<bpmndi:BPMNShape id="T8_di" bpmnElement="T8"><dc:Bounds x="1700" y="460" width="120" height="80"/></bpmndi:BPMNShape>
-<bpmndi:BPMNShape id="U3_di" bpmnElement="U3"><dc:Bounds x="1700" y="120" width="120" height="80"/></bpmndi:BPMNShape>
-<bpmndi:BPMNShape id="E3_di" bpmnElement="E3"><dc:Bounds x="1882" y="142" width="36" height="36"/><bpmndi:BPMNLabel><dc:Bounds x="1878" y="182" width="45" height="14"/></bpmndi:BPMNLabel></bpmndi:BPMNShape>
-<bpmndi:BPMNShape id="GW8_di" bpmnElement="GW8" isMarkerVisible="true"><dc:Bounds x="1445" y="595" width="50" height="50"/><bpmndi:BPMNLabel><dc:Bounds x="1440" y="648" width="64" height="27"/></bpmndi:BPMNLabel></bpmndi:BPMNShape>
-<bpmndi:BPMNShape id="T9_di" bpmnElement="T9"><dc:Bounds x="1550" y="580" width="120" height="80"/></bpmndi:BPMNShape>
-<bpmndi:BPMNShape id="T10_di" bpmnElement="T10"><dc:Bounds x="920" y="620" width="120" height="80"/></bpmndi:BPMNShape>
-<bpmndi:BPMNShape id="U4_di" bpmnElement="U4"><dc:Bounds x="920" y="825" width="120" height="80"/></bpmndi:BPMNShape>
-<bpmndi:BPMNEdge id="f1_di" bpmnElement="f1"><di:waypoint x="258" y="500"/><di:waypoint x="280" y="500"/></bpmndi:BPMNEdge>
-<bpmndi:BPMNEdge id="f2_di" bpmnElement="f2"><di:waypoint x="400" y="500"/><di:waypoint x="450" y="500"/></bpmndi:BPMNEdge>
-<bpmndi:BPMNEdge id="f3_di" bpmnElement="f3"><di:waypoint x="500" y="500"/><di:waypoint x="550" y="500"/><bpmndi:BPMNLabel><dc:Bounds x="516" y="482" width="16" height="14"/></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
-<bpmndi:BPMNEdge id="f4_di" bpmnElement="f4"><di:waypoint x="475" y="525"/><di:waypoint x="475" y="582"/><bpmndi:BPMNLabel><dc:Bounds x="482" y="544" width="18" height="14"/></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
-<bpmndi:BPMNEdge id="f5_di" bpmnElement="f5"><di:waypoint x="600" y="500"/><di:waypoint x="650" y="500"/><bpmndi:BPMNLabel><dc:Bounds x="612" y="482" width="16" height="14"/></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
-<bpmndi:BPMNEdge id="f6_di" bpmnElement="f6"><di:waypoint x="575" y="525"/><di:waypoint x="575" y="582"/><bpmndi:BPMNLabel><dc:Bounds x="582" y="544" width="18" height="14"/></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
-<bpmndi:BPMNEdge id="f7_di" bpmnElement="f7"><di:waypoint x="700" y="500"/><di:waypoint x="760" y="500"/><bpmndi:BPMNLabel><dc:Bounds x="708" y="482" width="36" height="14"/></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
-<bpmndi:BPMNEdge id="f8_di" bpmnElement="f8"><di:waypoint x="675" y="525"/><di:waypoint x="675" y="580"/><bpmndi:BPMNLabel><dc:Bounds x="682" y="548" width="60" height="14"/></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
-<bpmndi:BPMNEdge id="f9_di" bpmnElement="f9"><di:waypoint x="675" y="660"/><di:waypoint x="675" y="695"/></bpmndi:BPMNEdge>
-<bpmndi:BPMNEdge id="f10_di" bpmnElement="f10"><di:waypoint x="650" y="720"/><di:waypoint x="608" y="720"/></bpmndi:BPMNEdge>
-<bpmndi:BPMNEdge id="f11_di" bpmnElement="f11"><di:waypoint x="572" y="720"/><di:waypoint x="518" y="720"/></bpmndi:BPMNEdge>
-<bpmndi:BPMNEdge id="f12_di" bpmnElement="f12"><di:waypoint x="700" y="720"/><di:waypoint x="770" y="720"/><di:waypoint x="770" y="708"/></bpmndi:BPMNEdge>
-<bpmndi:BPMNEdge id="f13_di" bpmnElement="f13"><di:waypoint x="675" y="745"/><di:waypoint x="675" y="765"/><di:waypoint x="752" y="765"/></bpmndi:BPMNEdge>
-<bpmndi:BPMNEdge id="f14_di" bpmnElement="f14"><di:waypoint x="770" y="672"/><di:waypoint x="770" y="540"/></bpmndi:BPMNEdge>
-<bpmndi:BPMNEdge id="f15_di" bpmnElement="f15"><di:waypoint x="788" y="765"/><di:waypoint x="860" y="765"/><di:waypoint x="860" y="540"/></bpmndi:BPMNEdge>
-<bpmndi:BPMNEdge id="f16_di" bpmnElement="f16"><di:waypoint x="820" y="460"/><di:waypoint x="820" y="200"/></bpmndi:BPMNEdge>
-<bpmndi:BPMNEdge id="f17_di" bpmnElement="f17"><di:waypoint x="898" y="190"/><di:waypoint x="960" y="190"/><di:waypoint x="960" y="275"/><bpmndi:BPMNLabel><dc:Bounds x="966" y="232" width="90" height="27"/></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
-<bpmndi:BPMNEdge id="f18_di" bpmnElement="f18"><di:waypoint x="880" y="145"/><di:waypoint x="1080" y="145"/><di:waypoint x="1080" y="475"/></bpmndi:BPMNEdge>
-<bpmndi:BPMNEdge id="f19_di" bpmnElement="f19"><di:waypoint x="1020" y="315"/><di:waypoint x="1080" y="315"/><di:waypoint x="1080" y="475"/></bpmndi:BPMNEdge>
-<bpmndi:BPMNEdge id="f20_di" bpmnElement="f20"><di:waypoint x="1105" y="500"/><di:waypoint x="1212" y="500"/><bpmndi:BPMNLabel><dc:Bounds x="1130" y="482" width="36" height="14"/></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
-<bpmndi:BPMNEdge id="f21_di" bpmnElement="f21"><di:waypoint x="1080" y="525"/><di:waypoint x="1080" y="600"/><di:waypoint x="1090" y="600"/><bpmndi:BPMNLabel><dc:Bounds x="1000" y="556" width="76" height="27"/></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
-<bpmndi:BPMNEdge id="f22_di" bpmnElement="f22"><di:waypoint x="1210" y="600"/><di:waypoint x="1257" y="600"/></bpmndi:BPMNEdge>
-<bpmndi:BPMNEdge id="f23_di" bpmnElement="f23"><di:waypoint x="1248" y="500"/><di:waypoint x="1280" y="500"/></bpmndi:BPMNEdge>
-<bpmndi:BPMNEdge id="f24_di" bpmnElement="f24"><di:waypoint x="1400" y="500"/><di:waypoint x="1445" y="500"/></bpmndi:BPMNEdge>
-<bpmndi:BPMNEdge id="f25_di" bpmnElement="f25"><di:waypoint x="1495" y="500"/><di:waypoint x="1550" y="500"/><bpmndi:BPMNLabel><dc:Bounds x="1494" y="470" width="56" height="27"/></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
-<bpmndi:BPMNEdge id="f26_di" bpmnElement="f26"><di:waypoint x="1470" y="525"/><di:waypoint x="1470" y="595"/><bpmndi:BPMNLabel><dc:Bounds x="1478" y="548" width="44" height="14"/></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
-<bpmndi:BPMNEdge id="f27_di" bpmnElement="f27"><di:waypoint x="1495" y="620"/><di:waypoint x="1550" y="620"/><bpmndi:BPMNLabel><dc:Bounds x="1508" y="602" width="18" height="14"/></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
-<bpmndi:BPMNEdge id="f28_di" bpmnElement="f28"><di:waypoint x="1445" y="620"/><di:waypoint x="1420" y="620"/><di:waypoint x="1420" y="690"/><di:waypoint x="1040" y="690"/><bpmndi:BPMNLabel><dc:Bounds x="1424" y="600" width="16" height="14"/></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
-<bpmndi:BPMNEdge id="f29_di" bpmnElement="f29"><di:waypoint x="1670" y="620"/><di:waypoint x="1685" y="620"/><di:waypoint x="1685" y="100"/><di:waypoint x="800" y="100"/><di:waypoint x="800" y="120"/><bpmndi:BPMNLabel><dc:Bounds x="1200" y="84" width="70" height="14"/></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
-<bpmndi:BPMNEdge id="f30_di" bpmnElement="f30"><di:waypoint x="980" y="373"/><di:waypoint x="980" y="620"/></bpmndi:BPMNEdge>
-<bpmndi:BPMNEdge id="f31_di" bpmnElement="f31"><di:waypoint x="980" y="700"/><di:waypoint x="980" y="825"/></bpmndi:BPMNEdge>
-<bpmndi:BPMNEdge id="f32_di" bpmnElement="f32"><di:waypoint x="1040" y="865"/><di:waypoint x="1230" y="865"/><di:waypoint x="1230" y="518"/></bpmndi:BPMNEdge>
-<bpmndi:BPMNEdge id="f33_di" bpmnElement="f33"><di:waypoint x="1670" y="500"/><di:waypoint x="1700" y="500"/></bpmndi:BPMNEdge>
-<bpmndi:BPMNEdge id="f34_di" bpmnElement="f34"><di:waypoint x="1760" y="460"/><di:waypoint x="1760" y="200"/></bpmndi:BPMNEdge>
-<bpmndi:BPMNEdge id="f35_di" bpmnElement="f35"><di:waypoint x="1820" y="160"/><di:waypoint x="1882" y="160"/></bpmndi:BPMNEdge>
-<bpmndi:BPMNShape id="A1_di" bpmnElement="A1"><dc:Bounds x="480" y="262" width="330" height="92"/></bpmndi:BPMNShape>
-<bpmndi:BPMNEdge id="As_A1_di" bpmnElement="As_A1"><di:waypoint x="480" y="354"/><di:waypoint x="480" y="486"/></bpmndi:BPMNEdge>
-<bpmndi:BPMNShape id="A3_di" bpmnElement="A3"><dc:Bounds x="1150" y="262" width="330" height="44"/></bpmndi:BPMNShape>
-<bpmndi:BPMNShape id="A4_di" bpmnElement="A4"><dc:Bounds x="1290" y="830" width="380" height="44"/></bpmndi:BPMNShape>
-<bpmndi:BPMNShape id="A5_di" bpmnElement="A5"><dc:Bounds x="1710" y="250" width="240" height="72"/></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="Pool_di" bpmnElement="Pool" isHorizontal="true"><dc:Bounds x="150" y="80" width="1850" height="850"/></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="Lane_L0_di" bpmnElement="Lane_L0" isHorizontal="true" bioc:stroke="#0F7C80" bioc:fill="#E6F3F3" color:background-color="#E6F3F3" color:border-color="#0F7C80"><dc:Bounds x="180" y="80" width="1820" height="130"/></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="Lane_L1_di" bpmnElement="Lane_L1" isHorizontal="true" bioc:stroke="#6B4FC8" bioc:fill="#EFEBFA" color:background-color="#EFEBFA" color:border-color="#6B4FC8"><dc:Bounds x="180" y="210" width="1820" height="170"/></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="Lane_CC_di" bpmnElement="Lane_CC" isHorizontal="true"><dc:Bounds x="180" y="380" width="1820" height="400"/></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="Lane_L3_di" bpmnElement="Lane_L3" isHorizontal="true" bioc:stroke="#3A4356" bioc:fill="#ECEEF2" color:background-color="#ECEEF2" color:border-color="#3A4356"><dc:Bounds x="180" y="780" width="1820" height="150"/></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="Start_di" bpmnElement="Start"><dc:Bounds x="222" y="472" width="36" height="36"/><bpmndi:BPMNLabel><dc:Bounds x="212" y="512" width="56" height="27"/></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="T1_di" bpmnElement="T1"><dc:Bounds x="280" y="450" width="120" height="80"/></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="GW1_di" bpmnElement="GW1" isMarkerVisible="true"><dc:Bounds x="450" y="465" width="50" height="50"/><bpmndi:BPMNLabel><dc:Bounds x="396" y="430" width="78" height="14"/></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="E0_di" bpmnElement="E0"><dc:Bounds x="457" y="572" width="36" height="36"/><bpmndi:BPMNLabel><dc:Bounds x="447" y="612" width="56" height="14"/></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="GW2_di" bpmnElement="GW2" isMarkerVisible="true"><dc:Bounds x="550" y="465" width="50" height="50"/><bpmndi:BPMNLabel><dc:Bounds x="540" y="434" width="70" height="27"/></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="E1_di" bpmnElement="E1"><dc:Bounds x="557" y="572" width="36" height="36"/><bpmndi:BPMNLabel><dc:Bounds x="545" y="612" width="60" height="14"/></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="GW7_di" bpmnElement="GW7" isMarkerVisible="true"><dc:Bounds x="650" y="465" width="50" height="50"/><bpmndi:BPMNLabel><dc:Bounds x="700" y="518" width="40" height="14"/></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="Tinf_di" bpmnElement="Tinf"><dc:Bounds x="615" y="570" width="120" height="80"/></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="EBG_di" bpmnElement="EBG"><dc:Bounds x="650" y="685" width="50" height="50"/></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="Cnorm_di" bpmnElement="Cnorm"><dc:Bounds x="572" y="692" width="36" height="36"/><bpmndi:BPMNLabel><dc:Bounds x="548" y="662" width="84" height="40"/></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="Einf_di" bpmnElement="Einf"><dc:Bounds x="482" y="692" width="36" height="36"/><bpmndi:BPMNLabel><dc:Bounds x="460" y="732" width="80" height="27"/></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="Cup_di" bpmnElement="Cup"><dc:Bounds x="727" y="662" width="36" height="36"/><bpmndi:BPMNLabel><dc:Bounds x="765" y="662" width="64" height="27"/></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="Ttim_di" bpmnElement="Ttim"><dc:Bounds x="727" y="732" width="36" height="36"/><bpmndi:BPMNLabel><dc:Bounds x="765" y="730" width="60" height="14"/></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="T3_di" bpmnElement="T3"><dc:Bounds x="770" y="450" width="120" height="80"/></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="Udin_di" bpmnElement="Udin" bioc:stroke="#0F7C80" color:border-color="#0F7C80"><dc:Bounds x="900" y="105" width="120" height="80"/></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="Edin_di" bpmnElement="Edin"><dc:Bounds x="1062" y="127" width="36" height="36"/><bpmndi:BPMNLabel><dc:Bounds x="1058" y="167" width="45" height="14"/></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="U1_di" bpmnElement="U1" bioc:stroke="#6B4FC8" color:border-color="#6B4FC8"><dc:Bounds x="900" y="260" width="120" height="80"/></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="Brem_di" bpmnElement="Brem"><dc:Bounds x="912" y="242" width="36" height="36"/><bpmndi:BPMNLabel><dc:Bounds x="888" y="232" width="34" height="14"/></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="Trem_di" bpmnElement="Trem"><dc:Bounds x="1082" y="214" width="36" height="36"/><bpmndi:BPMNLabel><dc:Bounds x="1068" y="254" width="64" height="14"/></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="Erem_di" bpmnElement="Erem"><dc:Bounds x="1192" y="214" width="36" height="36"/></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="Besc_di" bpmnElement="Besc"><dc:Bounds x="972" y="322" width="36" height="36"/><bpmndi:BPMNLabel><dc:Bounds x="998" y="360" width="90" height="14"/></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="GW3_di" bpmnElement="GW3" isMarkerVisible="true"><dc:Bounds x="1085" y="465" width="50" height="50"/><bpmndi:BPMNLabel><dc:Bounds x="1128" y="512" width="62" height="14"/></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="T4_di" bpmnElement="T4"><dc:Bounds x="1130" y="560" width="120" height="80"/></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="E2_di" bpmnElement="E2"><dc:Bounds x="1172" y="682" width="36" height="36"/><bpmndi:BPMNLabel><dc:Bounds x="1212" y="693" width="45" height="14"/></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="IT1_di" bpmnElement="IT1"><dc:Bounds x="1272" y="472" width="36" height="36"/><bpmndi:BPMNLabel><dc:Bounds x="1250" y="446" width="80" height="14"/></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="T5_di" bpmnElement="T5"><dc:Bounds x="1340" y="450" width="120" height="80"/></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="GW4_di" bpmnElement="GW4" isMarkerVisible="true"><dc:Bounds x="1505" y="465" width="50" height="50"/><bpmndi:BPMNLabel><dc:Bounds x="1500" y="436" width="62" height="14"/></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="GW9_di" bpmnElement="GW9" isMarkerVisible="true"><dc:Bounds x="1505" y="585" width="50" height="50"/><bpmndi:BPMNLabel><dc:Bounds x="1556" y="636" width="70" height="27"/></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="IT2_di" bpmnElement="IT2"><dc:Bounds x="1622" y="592" width="36" height="36"/><bpmndi:BPMNLabel><dc:Bounds x="1662" y="600" width="70" height="27"/></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="T7_di" bpmnElement="T7"><dc:Bounds x="1620" y="450" width="120" height="80"/></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="T8_di" bpmnElement="T8"><dc:Bounds x="1770" y="450" width="120" height="80"/></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="U3_di" bpmnElement="U3" bioc:stroke="#6B4FC8" color:border-color="#6B4FC8"><dc:Bounds x="1770" y="260" width="120" height="80"/></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="E3_di" bpmnElement="E3"><dc:Bounds x="1932" y="282" width="36" height="36"/><bpmndi:BPMNLabel><dc:Bounds x="1928" y="322" width="45" height="14"/></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="T10_di" bpmnElement="T10"><dc:Bounds x="940" y="660" width="120" height="80"/></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="U4_di" bpmnElement="U4" bioc:stroke="#3A4356" color:border-color="#3A4356"><dc:Bounds x="940" y="815" width="120" height="80"/></bpmndi:BPMNShape>
+<bpmndi:BPMNEdge id="f1_di" bpmnElement="f1"><di:waypoint x="258" y="490"/><di:waypoint x="280" y="490"/></bpmndi:BPMNEdge>
+<bpmndi:BPMNEdge id="f2_di" bpmnElement="f2"><di:waypoint x="400" y="490"/><di:waypoint x="450" y="490"/></bpmndi:BPMNEdge>
+<bpmndi:BPMNEdge id="f3_di" bpmnElement="f3"><di:waypoint x="500" y="490"/><di:waypoint x="550" y="490"/><bpmndi:BPMNLabel><dc:Bounds x="516" y="472" width="16" height="14"/></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+<bpmndi:BPMNEdge id="f4_di" bpmnElement="f4"><di:waypoint x="475" y="515"/><di:waypoint x="475" y="572"/><bpmndi:BPMNLabel><dc:Bounds x="482" y="534" width="18" height="14"/></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+<bpmndi:BPMNEdge id="f5_di" bpmnElement="f5"><di:waypoint x="600" y="490"/><di:waypoint x="650" y="490"/><bpmndi:BPMNLabel><dc:Bounds x="612" y="472" width="16" height="14"/></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+<bpmndi:BPMNEdge id="f6_di" bpmnElement="f6"><di:waypoint x="575" y="515"/><di:waypoint x="575" y="572"/><bpmndi:BPMNLabel><dc:Bounds x="582" y="534" width="18" height="14"/></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+<bpmndi:BPMNEdge id="f7_di" bpmnElement="f7"><di:waypoint x="700" y="490"/><di:waypoint x="770" y="490"/><bpmndi:BPMNLabel><dc:Bounds x="712" y="472" width="36" height="14"/></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+<bpmndi:BPMNEdge id="f8_di" bpmnElement="f8"><di:waypoint x="675" y="515"/><di:waypoint x="675" y="570"/><bpmndi:BPMNLabel><dc:Bounds x="682" y="538" width="60" height="14"/></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+<bpmndi:BPMNEdge id="f9_di" bpmnElement="f9"><di:waypoint x="675" y="650"/><di:waypoint x="675" y="685"/></bpmndi:BPMNEdge>
+<bpmndi:BPMNEdge id="f10_di" bpmnElement="f10"><di:waypoint x="650" y="710"/><di:waypoint x="608" y="710"/></bpmndi:BPMNEdge>
+<bpmndi:BPMNEdge id="f11_di" bpmnElement="f11"><di:waypoint x="572" y="710"/><di:waypoint x="518" y="710"/></bpmndi:BPMNEdge>
+<bpmndi:BPMNEdge id="f12_di" bpmnElement="f12"><di:waypoint x="700" y="710"/><di:waypoint x="745" y="710"/><di:waypoint x="745" y="698"/></bpmndi:BPMNEdge>
+<bpmndi:BPMNEdge id="f13_di" bpmnElement="f13"><di:waypoint x="675" y="735"/><di:waypoint x="675" y="750"/><di:waypoint x="727" y="750"/></bpmndi:BPMNEdge>
+<bpmndi:BPMNEdge id="f14_di" bpmnElement="f14"><di:waypoint x="745" y="662"/><di:waypoint x="745" y="560"/><di:waypoint x="800" y="560"/><di:waypoint x="800" y="530"/></bpmndi:BPMNEdge>
+<bpmndi:BPMNEdge id="f15_di" bpmnElement="f15"><di:waypoint x="763" y="750"/><di:waypoint x="860" y="750"/><di:waypoint x="860" y="530"/></bpmndi:BPMNEdge>
+<bpmndi:BPMNEdge id="f16_di" bpmnElement="f16"><di:waypoint x="870" y="450"/><di:waypoint x="870" y="300"/><di:waypoint x="900" y="300"/><bpmndi:BPMNLabel><dc:Bounds x="876" y="400" width="40" height="14"/></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+<bpmndi:BPMNEdge id="f17_di" bpmnElement="f17"><di:waypoint x="800" y="450"/><di:waypoint x="800" y="145"/><di:waypoint x="900" y="145"/><bpmndi:BPMNLabel><dc:Bounds x="806" y="180" width="52" height="14"/></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+<bpmndi:BPMNEdge id="f18_di" bpmnElement="f18"><di:waypoint x="1020" y="145"/><di:waypoint x="1062" y="145"/></bpmndi:BPMNEdge>
+<bpmndi:BPMNEdge id="f19_di" bpmnElement="f19"><di:waypoint x="930" y="242"/><di:waypoint x="930" y="232"/><di:waypoint x="1082" y="232"/><bpmndi:BPMNLabel><dc:Bounds x="960" y="214" width="90" height="14"/></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+<bpmndi:BPMNEdge id="f20_di" bpmnElement="f20"><di:waypoint x="1118" y="232"/><di:waypoint x="1192" y="232"/></bpmndi:BPMNEdge>
+<bpmndi:BPMNEdge id="f21_di" bpmnElement="f21"><di:waypoint x="1020" y="300"/><di:waypoint x="1110" y="300"/><di:waypoint x="1110" y="465"/></bpmndi:BPMNEdge>
+<bpmndi:BPMNEdge id="f22_di" bpmnElement="f22"><di:waypoint x="1135" y="490"/><di:waypoint x="1272" y="490"/><bpmndi:BPMNLabel><dc:Bounds x="1170" y="472" width="36" height="14"/></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+<bpmndi:BPMNEdge id="f23_di" bpmnElement="f23"><di:waypoint x="1110" y="515"/><di:waypoint x="1110" y="600"/><di:waypoint x="1130" y="600"/><bpmndi:BPMNLabel><dc:Bounds x="1020" y="556" width="86" height="27"/></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+<bpmndi:BPMNEdge id="f24_di" bpmnElement="f24"><di:waypoint x="1190" y="640"/><di:waypoint x="1190" y="682"/></bpmndi:BPMNEdge>
+<bpmndi:BPMNEdge id="f25_di" bpmnElement="f25"><di:waypoint x="1308" y="490"/><di:waypoint x="1340" y="490"/></bpmndi:BPMNEdge>
+<bpmndi:BPMNEdge id="f26_di" bpmnElement="f26"><di:waypoint x="1460" y="490"/><di:waypoint x="1505" y="490"/></bpmndi:BPMNEdge>
+<bpmndi:BPMNEdge id="f27_di" bpmnElement="f27"><di:waypoint x="1555" y="490"/><di:waypoint x="1620" y="490"/><bpmndi:BPMNLabel><dc:Bounds x="1560" y="460" width="56" height="27"/></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+<bpmndi:BPMNEdge id="f28_di" bpmnElement="f28"><di:waypoint x="1530" y="515"/><di:waypoint x="1530" y="585"/><bpmndi:BPMNLabel><dc:Bounds x="1538" y="540" width="44" height="14"/></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+<bpmndi:BPMNEdge id="f29_di" bpmnElement="f29"><di:waypoint x="1555" y="610"/><di:waypoint x="1622" y="610"/><bpmndi:BPMNLabel><dc:Bounds x="1580" y="592" width="16" height="14"/></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+<bpmndi:BPMNEdge id="f30_di" bpmnElement="f30"><di:waypoint x="1640" y="592"/><di:waypoint x="1640" y="560"/><di:waypoint x="1430" y="560"/><di:waypoint x="1430" y="530"/></bpmndi:BPMNEdge>
+<bpmndi:BPMNEdge id="f31_di" bpmnElement="f31"><di:waypoint x="1505" y="610"/><di:waypoint x="1470" y="610"/><di:waypoint x="1470" y="720"/><di:waypoint x="1060" y="720"/><bpmndi:BPMNLabel><dc:Bounds x="1478" y="592" width="18" height="14"/></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+<bpmndi:BPMNEdge id="f32_di" bpmnElement="f32"><di:waypoint x="990" y="358"/><di:waypoint x="990" y="660"/></bpmndi:BPMNEdge>
+<bpmndi:BPMNEdge id="f33_di" bpmnElement="f33"><di:waypoint x="1000" y="740"/><di:waypoint x="1000" y="815"/></bpmndi:BPMNEdge>
+<bpmndi:BPMNEdge id="f34_di" bpmnElement="f34"><di:waypoint x="1060" y="855"/><di:waypoint x="1290" y="855"/><di:waypoint x="1290" y="508"/></bpmndi:BPMNEdge>
+<bpmndi:BPMNEdge id="f35_di" bpmnElement="f35"><di:waypoint x="1740" y="490"/><di:waypoint x="1770" y="490"/></bpmndi:BPMNEdge>
+<bpmndi:BPMNEdge id="f36_di" bpmnElement="f36"><di:waypoint x="1830" y="450"/><di:waypoint x="1830" y="340"/></bpmndi:BPMNEdge>
+<bpmndi:BPMNEdge id="f37_di" bpmnElement="f37"><di:waypoint x="1890" y="300"/><di:waypoint x="1932" y="300"/></bpmndi:BPMNEdge>
+<bpmndi:BPMNShape id="A1_di" bpmnElement="A1"><dc:Bounds x="480" y="232" width="300" height="100"/></bpmndi:BPMNShape>
+<bpmndi:BPMNEdge id="As_A1_di" bpmnElement="As_A1"><di:waypoint x="480" y="332"/><di:waypoint x="480" y="476"/></bpmndi:BPMNEdge>
+<bpmndi:BPMNShape id="A3_di" bpmnElement="A3"><dc:Bounds x="240" y="820" width="340" height="44"/></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="A4_di" bpmnElement="A4"><dc:Bounds x="1330" y="820" width="420" height="58"/></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="A5_di" bpmnElement="A5"><dc:Bounds x="1300" y="100" width="380" height="58"/></bpmndi:BPMNShape>
 </bpmndi:BPMNPlane></bpmndi:BPMNDiagram></bpmn:definitions></script>
 <script src="https://unpkg.com/bpmn-js@17.11.1/dist/bpmn-navigated-viewer.production.min.js"></script>
 <script id="sim">
-/* ===== Núcleo de simulación (sin DOM) · v1.1 fase 1 ===== */
-const RULES_VERSION = 'v1.1 · fase 1';
+/* ===== Núcleo de simulación (sin DOM) · v1.2 ===== */
+const RULES_VERSION = 'v1.2';
 const RULES_OWNER = 'Equipo de desarrollo';
 const CFG_DEFAULT = {
-  umbralMediana:6, esperaMax:15, umbralPacientes:3, persist:2,
+  umbralMediana:6, esperaMax:15, umbralPacientes:6, persist:2,
   umbralCierre:5, cierreEstable:5, infoMax:15,
-  ackMax:5, silencio:10, escSostenida:20, bloqueoAnul:60, maxAvisosHora:4, minTriaje:4
+  ackRecordatorio:5, ackEscala:10, silencio:20, seguimientoExtra:10,
+  bloqueoAnul:60, maxAvisosHora:4, minTriaje:4
 };
 let cfg = Object.assign({}, CFG_DEFAULT);
 
 const SCENARIOS = {
-  rapido:     {name:'Se resuelve rápido', start:10*60, mode:'auto', initial:3, gap:1.6, rate:t=>t<22?44:18, maxExtra1:1},
-  olvidado:   {name:'Un paciente olvidado (>15 min)', start:8*60+30, mode:'auto', initial:2, gap:1, rate:()=>30, stuck:-13, maxExtra1:0},
-  informativa:{name:'Informativa que se alarga', start:9*60, mode:'auto', initial:2, gap:3, rate:t=>t<30?9:4, boxes:1, triaje:6, maxExtra1:1},
-  sostenida:  {name:'Sostenida: escala a Dirección', start:16*60, mode:'auto', initial:4, gap:1.5, rate:()=>50, maxExtra1:1},
-  nadie:      {name:'Nadie responde', start:11*60, mode:'nadie', initial:4, gap:1.5, rate:()=>40, maxExtra1:1},
-  anula:      {name:'Anulación con motivo', start:12*60, mode:'anular', initial:4, gap:1.5, rate:t=>t<35?44:16, maxExtra1:1}
+  rapido:     {name:'Se resuelve con el 2.º box', start:10*60, mode:'auto', initial:5, gap:1.4, rate:t=>t<14?30:12, boxes:1},
+  mejora:     {name:'Mejora, pero necesita 10 min más', start:13*60, mode:'auto', initial:5, gap:1.4, rate:t=>t<20?30:14, boxes:1},
+  olvidado:   {name:'Un paciente olvidado (>15 min)', start:8*60+30, mode:'auto', initial:2, gap:1, rate:()=>24, stuck:-13, boxes:2},
+  informativa:{name:'Informativa que se alarga', start:9*60, mode:'auto', initial:3, gap:2.5, rate:t=>t<30?15:4, boxes:1, triaje:4},
+  sostenida:  {name:'Persiste: escala a Dirección', start:16*60, mode:'auto', initial:6, gap:1.3, rate:t=>t<45?44:18, boxes:1},
+  nadie:      {name:'Nadie responde', start:11*60, mode:'nadie', initial:6, gap:1.3, rate:()=>36, boxes:1},
+  anula:      {name:'Anulación con motivo', start:12*60, mode:'anular', initial:6, gap:1.3, rate:t=>t<20?34:10, boxes:1}
 };
 
 const ROLES = {
-  din: {short:'Dinamizadora', full:()=> 'Dinamizadora de la sala de espera'},
-  resp:{short:'Resp. enfermería', full:()=> 'Responsable de enfermería de Urgencias'},
-  dir: {short:'Dir. enfermería', full:()=> 'Dirección de Enfermería'}
+  din: {short:'Dinamizadora', full:()=> 'Dinamizadora de la sala de espera', color:'#0F7C80'},
+  resp:{short:'Resp. enfermería', full:()=> 'Responsable de enfermería de Urgencias', color:'#6B4FC8'},
+  dir: {short:'Dir. enfermería', full:()=> 'Dirección de Enfermería', color:'#3A4356'}
 };
 const ROLE_ORDER = ['din','resp','dir'];
 const REASONS = [
@@ -1470,7 +1482,7 @@ const REASONS = [
   'Ya se ha comunicado por otra vía',
   'Otro motivo (texto libre)'
 ];
-const FB_ACTIONS = ['Dinamizadora en sala y priorizar triaje','Abrir otro puesto de triaje','Pedir refuerzo de enfermería','Ninguna: se resolvió sola'];
+const FB_ACTIONS = ['Activar 2.º box de triaje','Reasignar enfermera a triaje','Pedir refuerzo de enfermería','Ninguna: se resolvió sola'];
 const LV_NAME = {verde:'Normal', informativa:'Informativa', alerta:'Alerta', escalada:'Escalada'};
 
 function mulberry32(a){return function(){a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
@@ -1483,13 +1495,14 @@ function roleName(r){return ROLES[r].full()}
 function fmt1(x){return x.toFixed(1).replace('.',',')}
 function load(){return ((sc.enBoxes||18)+S.m.n)/S.nurses}
 function shownLevel(){if(S.alertLevel==='alerta'&&S.escLevel>0) return 'escalada'; return S.alertLevel||S.level}
+function boxAction(){return S.boxes<2?'Activar 2.º box de triaje':'El 2.º box ya está abierto: reasignar enfermera a triaje o pedir refuerzo'}
 
 function reset(key){
   sc = SCENARIOS[key]; rng = mulberry32(11);
-  S = {key, t:0, waiting:[], stuck:[], arrAcc:0, capAcc:0, boxes:sc.boxes||2, nurses:sc.nurses||6, extraFirst:0,
+  S = {key, t:0, waiting:[], stuck:[], arrAcc:0, capAcc:0, boxes:sc.boxes||2, nurses:sc.nurses||6, reassigned:false,
     alert:'normal', persist:0, level:'verde', below:true, m:{n:0,max:0,med:0}, reasonAlert:'',
-    alertLevel:null, notified:new Set(), notifiedAt:null, respIn:false, escAckDeadline:null, round:0, roundType:'base',
-    escLevel:0, reactivations:0, ackedBy:null, silenceEnd:null, stable:0, suppressUntil:null,
+    alertLevel:null, notified:new Set(), notifiedAt:null, reminded:false, escAckDeadline:null, round:0, roundType:'base',
+    escLevel:0, reactivations:0, ackedBy:null, ackSnap:null, extraGiven:false, followEnd:null, silenceEnd:null, stable:0, suppressUntil:null,
     queue:[], msgs:{din:[],resp:[],dir:[]}, sent:[], log:[], hist:[],
     flash:null, hot:{}, visited:new Set(['monitor']), episode:null, lastEpisode:null, episodes:0,
     mode:sc.mode, rateOverride:null, msgSeq:0, ver:1, lastMsgRole:null, logSeq:0, trail:[],
@@ -1497,7 +1510,7 @@ function reset(key){
   for(let i=0;i<sc.initial;i++) S.waiting.push(-(sc.initial-i)*sc.gap);
   if(sc.stuck!=null) S.stuck.push(sc.stuck);
   compute(); S.hist.push({t:0, max:S.m.max, med:S.m.med});
-  addLog('Monitorización', `Escenario «${sc.name}»${S.shadow?' en modo sombra: se calcula todo, pero no se avisa a nadie':''}. El Command Center recalcula la espera cada minuto.`);
+  addLog('Monitorización', `Escenario «${sc.name}»${S.shadow?' en modo sombra: se calcula todo, pero no se avisa a nadie':''}. ${S.boxes} box${S.boxes>1?'es':''} de triaje abierto${S.boxes>1?'s':''}.`);
 }
 
 function compute(){
@@ -1516,9 +1529,9 @@ function addLog(cat,text,lv){S.log.unshift({id:++S.logSeq,t:S.t,cat,text,lv}); i
 function hot(id){S.hot[id]=S.t+3}
 function flash(node){S.flash={node,t:S.t}}
 
-function buildMsg(title,note,actionable){
-  return {kind:actionable?'alerta':'info', lv:shownLevel(), title, note, pending:!!actionable,
-    lines:[`${S.m.n} pacientes esperando triaje`, `Mediana de espera ${S.m.med} min · la más larga ${S.m.max} min`, `${S.boxes} puesto${S.boxes>1?'s':''} de triaje · ${fmt1(load())} pacientes por enfermera`]};
+function buildMsg(title,note,actionable,action){
+  const lines=[`${S.m.n} pacientes esperando triaje`, `Mediana de espera ${S.m.med} min · la más larga ${S.m.max} min`, `${S.boxes} box${S.boxes>1?'es':''} de triaje abierto${S.boxes>1?'s':''}`];
+  return {kind:actionable?'alerta':'info', lv:shownLevel(), title, note, action, pending:!!actionable, lines};
 }
 function sendMsg(role,msg,force){
   const recent=S.sent.filter(s=>s.role===role && s.t>S.t-60).length;
@@ -1534,14 +1547,6 @@ function outMsg(role,text){S.msgs[role].push({id:++S.msgSeq,t:S.t,kind:'out',tex
 function markPending(status){ROLE_ORDER.forEach(r=>S.msgs[r].forEach(m=>{if(m.kind==='alerta'&&m.pending){m.pending=false;m.status=status}})); S.ver++}
 function hasPending(role){return S.msgs[role].some(m=>m.kind==='alerta'&&m.pending)}
 
-function newRound(type,roles,title,note,force,primary){
-  S.round++; S.roundType=type; S.notifiedAt=S.t;
-  const sentTo=[];
-  roles.forEach(r=>{if(sendMsg(r,buildMsg(title,note,true),force)) sentTo.push(r)});
-  if(sentTo.length) addLog('Notificación', `«${title}» enviada por WhatsApp a ${sentTo.map(roleName).join(' y ')}.`, 'alerta');
-  hot('e_na'); flash(type==='esc'?'escalado':'notificacion');
-  scheduleAuto(primary||roles[0]);
-}
 function scheduleAuto(role){
   const round=S.round, delay=role==='dir'?3:2;
   if(S.mode==='auto') S.queue.push({t:S.t+delay, fn:()=>{if(S.alert==='notificada'&&S.round===round&&hasPending(role)) ack(role,'asumo')}});
@@ -1549,7 +1554,7 @@ function scheduleAuto(role){
 }
 
 function startEpisode(){
-  S.episode={n:++S.episodes,start:S.t,infoAt:null,fired:null,firstAck:null,ackBy:null,reacts:0,esc:0,held:0,maxLevel:S.level,outcome:null,end:null,feedback:null,reason:null,incident:false,respAt:null,shadow:S.shadow};
+  S.episode={n:++S.episodes,start:S.t,infoAt:null,fired:null,firstAck:null,ackBy:null,reacts:0,esc:0,held:0,maxLevel:S.level,outcome:null,end:null,feedback:null,reason:null,incident:false,remindAt:null,extra:false,shadow:S.shadow};
   S.visited=new Set(['monitor','disparo']);
 }
 function endEpisode(outcome){
@@ -1575,24 +1580,30 @@ function closeInfo(){
   S.alert='normal'; S.persist=0; S.alertLevel=null;
 }
 
-/* --- Alerta: la dinamizadora es la dueña --- */
+/* --- Alerta: la responsable de enfermería es la dueña; la dinamizadora va en copia --- */
 function fire(fromInfo,why){
-  S.alert='notificada'; S.alertLevel='alerta'; S.escLevel=0; S.reactivations=0; S.notified=new Set(); S.ackedBy=null; S.respIn=false;
+  S.alert='notificada'; S.alertLevel='alerta'; S.escLevel=0; S.reactivations=0; S.notified=new Set(); S.ackedBy=null; S.extraGiven=false; S.ackSnap=null;
   S.episode.fired=S.t; S.episode.maxLevel='alerta';
   hot('e_dn');
   const motivo = why || S.reasonAlert;
   addLog('Disparo', fromInfo
     ?`Pasa de informativa a alerta: ${motivo}.`
     :`Alerta confirmada: ${motivo}, mediana ${S.m.med} min. Se ha mantenido ${cfg.persist} min.`, 'alerta');
-  newRound('base', ['din'], 'ALERTA · RETRASO EN TRIAJE', 'Eres la responsable de esta alerta: acude a la sala.', true, 'din');
+  S.round++; S.roundType='base'; S.notifiedAt=S.t; S.reminded=false;
+  sendMsg('din',buildMsg('ALERTA · EN COPIA','Acude a la sala de espera. La responsable de enfermería gestiona la alerta.',false),true);
+  sendMsg('resp',buildMsg('ALERTA · RETRASO EN TRIAJE','Eres la responsable de esta alerta.',true,boxAction()),true);
+  addLog('Notificación', `Alerta por WhatsApp a la ${roleName('resp')} (acción: ${boxAction().toLowerCase()}) y, en copia, a la ${roleName('din')}, que acude a la sala.`, 'alerta');
+  hot('e_na'); flash('notificacion');
+  scheduleAuto('resp');
+  S.queue.push({t:S.t+3, fn:()=>dinamizadoraEnSala()});
 }
-function escalateResp(){
-  S.respIn=true; if(S.episode) S.episode.respAt=S.t;
-  hot('e_ae');
-  const sent=sendMsg('resp',buildMsg('ALERTA SIN ASUMIR',`La dinamizadora no la ha asumido en ${cfg.ackMax} min.`,true),true);
-  addLog('Escalado', `Nadie la ha asumido en ${cfg.ackMax} min: se avisa a la Responsable de enfermería de Urgencias. La dinamizadora puede seguir asumiéndola.`, 'alerta');
-  flash('escalado');
-  if(sent) scheduleAuto('resp');
+function dinamizadoraEnSala(){
+  if(S.stuck.length){S.stuck=[]; addLog('Acción','La dinamizadora está en la sala y localiza al paciente que llevaba más tiempo esperando: pasa a triaje.'); compute()}
+}
+function remind(){
+  S.reminded=true; if(S.episode) S.episode.remindAt=S.t;
+  const sent=sendMsg('resp',buildMsg('RECORDATORIO · SIN ASUMIR',`Nadie la ha asumido en ${cfg.ackRecordatorio} min. A los ${cfg.ackEscala} min escalará a Dirección de Enfermería.`,true,boxAction()),false);
+  addLog('Notificación', `Nadie la ha asumido en ${cfg.ackRecordatorio} min: recordatorio a la ${roleName('resp')}${sent?'':' (retenido por el límite)'}.`, 'alerta');
 }
 
 function ack(role,how){
@@ -1600,19 +1611,22 @@ function ack(role,how){
   const wait=S.t-S.notifiedAt;
   S.ackedBy=role;
   if(S.episode&&S.episode.firstAck==null){S.episode.firstAck=S.t; S.episode.ackBy=role}
-  outMsg(role, how==='otro'?'Ya se está gestionando':(role==='din'?'Asumo, voy a la sala':'Asumo'));
+  const txt = how==='otro'?'Ya se está gestionando':(role==='dir'?'Asumo · envío refuerzo':(S.boxes<2?'Asumo · activo el 2.º box':'Asumo · reasigno enfermera a triaje'));
+  outMsg(role, txt);
   markPending(`${how==='otro'?'Gestionada':'Asumida'} por ${ROLES[role].short} · ${clock(S.t)}`);
-  S.alert='silencio'; S.silenceEnd=S.t+cfg.silencio; S.stable=0;
+  S.alert='silencio'; S.silenceEnd=S.t+cfg.silencio; S.stable=0; S.ackSnap={med:S.m.med,n:S.m.n,max:S.m.max};
   hot('e_as'); flash('acuse');
-  addLog('Acuse', `${roleName(role)} ${how==='otro'?'indica que ya se está gestionando':'asume la alerta'} a los ${wait} min. Silencio hasta las ${clock(S.silenceEnd)}.`);
-  S.queue.push({t:S.t+2, fn:()=>mitigate(role)});
+  addLog('Acuse', `${roleName(role)} ${how==='otro'?'indica que ya se está gestionando':'asume la alerta'} a los ${wait} min. Silencio de ${cfg.silencio} min, hasta las ${clock(S.silenceEnd)}.`);
+  S.queue.push({t:S.t+1, fn:()=>mitigate(role)});
 }
 function mitigate(role){
-  if(S.stuck.length){S.stuck=[]; addLog('Acción','La dinamizadora localiza al paciente que llevaba más tiempo esperando y pasa a triaje.'); compute(); return}
-  if(role==='dir'&&S.dirRef){addLog('Acción','El refuerzo de Dirección de Enfermería ya está en marcha.')}
-  else if(role==='dir'){S.dirRef=true; S.boxes+=2; addLog('Acción', `Dirección de Enfermería envía refuerzo: 2 puestos de triaje más (${S.boxes} en total).`)}
-  else if(S.extraFirst<(sc.maxExtra1??1)){S.extraFirst++; S.boxes++; addLog('Acción', `${role==='din'?'La dinamizadora está en la sala y ayuda a priorizar':'Se abre otro puesto de triaje'}: ${S.boxes} puestos en total.`)}
-  else addLog('Acción', 'La primera línea no tiene más capacidad para abrir otro puesto de triaje.');
+  if(role==='dir'){
+    if(S.dirRef){addLog('Acción','El refuerzo de Dirección de Enfermería ya está en marcha.'); return}
+    S.dirRef=true; S.boxes+=2; addLog('Acción', `Dirección de Enfermería envía refuerzo: dos puestos de triaje más (${S.boxes} en total).`); return;
+  }
+  if(S.boxes<2){S.boxes=2; addLog('Acción','La responsable de enfermería activa el 2.º box de triaje.')}
+  else if(!S.reassigned){S.reassigned=true; S.boxes+=1; addLog('Acción', `El 2.º box ya estaba abierto: se reasigna una enfermera a triaje (${S.boxes} puestos).`)}
+  else addLog('Acción','No queda más capacidad en la unidad para triaje.');
 }
 
 function reevaluate(){
@@ -1622,36 +1636,45 @@ function reevaluate(){
     S.alert='estabilizando';
     addLog('Reevaluación', S.below
       ?`La mediana ya está en ${S.m.med} min. Faltan ${cfg.cierreEstable-S.stable} min estables para cerrar.`
-      :`La mediana está en ${S.m.med} min: por debajo del umbral, pero aún no en ${cfg.umbralCierre} min o menos. No se cierra todavía.`);
+      :`La demora ya no supera el umbral (mediana ${S.m.med} min), pero aún no está en ${cfg.umbralCierre} min o menos. Se vigila sin cerrar.`);
     return;
   }
   persists();
 }
 function persists(){
-  const since=S.t-S.episode.fired;
-  if(S.escLevel===0 && since>=cfg.escSostenida) escalate(`sigue sin resolverse a los ${since} min del aviso`, false);
-  else reactivate(`la mediana sigue en ${S.m.med} min con ${S.m.n} pacientes`);
+  const sn=S.ackSnap||{med:99,n:99};
+  const improved = S.m.med<sn.med || S.m.n<sn.n;
+  if(S.escLevel===0){
+    if(improved && !S.extraGiven){
+      S.extraGiven=true; if(S.episode) S.episode.extra=true;
+      S.alert='seguimiento'; S.followEnd=S.t+cfg.seguimientoExtra; S.stable=0;
+      addLog('Reevaluación', `Persiste la demora, pero mejora (mediana ${sn.med}→${S.m.med} min, ${sn.n}→${S.m.n} pacientes). Se dan ${cfg.seguimientoExtra} min más de seguimiento sin avisar.`, 'alerta');
+      return;
+    }
+    escalate(improved?`persiste la demora tras ${cfg.silencio+cfg.seguimientoExtra} min (mediana ${S.m.med} min)`:`persiste la demora tras ${cfg.silencio} min de silencio sin mejorar (mediana ${sn.med}→${S.m.med} min)`, false);
+  } else reactivate(`persiste la demora (mediana ${S.m.med} min, ${S.m.n} pacientes)`);
 }
 function reactivate(reason){
   S.reactivations++; hot('e_rn'); flash('reevaluacion');
-  addLog('Reevaluación', `Persiste tras el silencio. Reactivada (${S.reactivations}ª vez): ${reason}.`, 'alerta');
-  S.alert='notificada';
-  const roles=['din'].concat(S.respIn?['resp']:[]).concat(S.escLevel?['dir']:[]);
-  newRound('base', roles, `REACTIVADA (${S.reactivations}ª)`, `Motivo: ${reason}`, false, S.ackedBy||'din');
-  if(S.escLevel) S.escAckDeadline=S.t+cfg.ackMax;
+  addLog('Reevaluación', `Reactivada (${S.reactivations}ª vez): ${reason}.`, 'escalada');
+  S.alert='notificada'; S.round++; S.notifiedAt=S.t; S.reminded=true;
+  ['dir','resp'].forEach(r=>sendMsg(r,buildMsg(`REACTIVADA (${S.reactivations}ª)`,`Motivo: ${reason}`,true,r==='dir'?'Valorar más refuerzo':boxAction()),false));
+  S.escAckDeadline=S.t+cfg.ackRecordatorio;
+  scheduleAuto('dir');
 }
 function escalate(reason,fromWaiting){
-  S.escLevel=1; S.alert='notificada';
+  S.escLevel=1; S.alert='notificada'; S.round++; S.notifiedAt=S.t; S.reminded=true;
   if(S.episode) S.episode.esc=1;
-  hot(fromWaiting?'e_ae':'e_re'); hot('e_ea');
+  hot(fromWaiting?'e_ae':'e_re'); hot('e_ea'); flash('escalado');
   addLog('Escalado', `Escala a Dirección de Enfermería: ${reason}.`, 'escalada');
-  newRound('esc', ['dir'], 'ESCALADA · DIRECCIÓN DE ENFERMERÍA', `Motivo: ${reason}`, true, 'dir');
-  S.escAckDeadline=S.t+cfg.ackMax;
+  sendMsg('dir',buildMsg('ESCALADA · DIRECCIÓN DE ENFERMERÍA',`Motivo: ${reason}.`,true,'Valorar y enviar refuerzo'),true);
+  S.escAckDeadline=S.t+cfg.ackRecordatorio;
+  scheduleAuto('dir');
 }
 function incident(){
   const first=S.episode&&!S.episode.incident; if(S.episode) S.episode.incident=true;
   addLog('Escalado', first?'Dirección de Enfermería no ha respondido. Queda registrada como incidencia y el aviso se repite cada 30 min.':'Sigue sin asumirse. Se repite el aviso a Dirección de Enfermería.', 'escalada');
-  if(sendMsg('dir',buildMsg('RECORDATORIO · SIN ASUMIR','Nadie ha asumido todavía esta alerta.',true),false)) S.round++;
+  if(sendMsg('dir',buildMsg('RECORDATORIO · SIN ASUMIR','Nadie ha asumido todavía esta alerta.',true,'Valorar y enviar refuerzo'),false)) S.round++;
   S.escAckDeadline=S.t+30;
 }
 function close(){
@@ -1664,7 +1687,7 @@ function close(){
     if(S.mode==='auto') S.queue.push({t:S.t+1, fn:()=>{const m=[...S.msgs[r]].reverse().find(x=>x.kind==='feedback'&&x.pending); if(m) feedback(r,m.id,r==='dir'?FB_ACTIONS[2]:FB_ACTIONS[0],true)}});
   }
   endEpisode('Cerrada');
-  S.alert='normal'; S.persist=0; S.alertLevel=null; S.escLevel=0; S.respIn=false;
+  S.alert='normal'; S.persist=0; S.alertLevel=null; S.escLevel=0;
 }
 function feedback(role,id,accion,util){
   const m=S.msgs[role].find(x=>x.id===id); if(!m||!m.pending) return;
@@ -1681,7 +1704,7 @@ function annul(role,reason){
   addLog('Anulación', `${roleName(role)} anula la alerta. Motivo: «${reason}». No volverá a saltar durante ${cfg.bloqueoAnul} min.`);
   S.ackedBy=role; if(S.episode){S.episode.reason=reason; if(S.episode.firstAck==null){S.episode.firstAck=S.t;S.episode.ackBy=role}}
   endEpisode('Anulada');
-  S.alert='normal'; S.suppressUntil=S.t+cfg.bloqueoAnul; S.persist=0; S.alertLevel=null; S.escLevel=0; S.respIn=false;
+  S.alert='normal'; S.suppressUntil=S.t+cfg.bloqueoAnul; S.persist=0; S.alertLevel=null; S.escLevel=0;
   if(S.mode==='anular'){S.mode='auto'; addLog('Monitorización','En la demo, a partir de aquí la respuesta pasa a automática.')}
 }
 
@@ -1697,7 +1720,7 @@ function shadowStep(){
       S.persist++;
       if(S.persist>=cfg.persist){
         S.alert='sombra'; S.stable=0; S.alertLevel=L; S.escLevel=0;
-        if(L==='alerta'){S.episode.fired=S.t; st.alerta++; addLog('Sombra', `Habría saltado una ALERTA a la dinamizadora (${S.reasonAlert}).`, 'alerta')}
+        if(L==='alerta'){S.episode.fired=S.t; st.alerta++; addLog('Sombra', `Habría saltado una ALERTA a la responsable de enfermería (${S.reasonAlert}).`, 'alerta')}
         else {S.episode.infoAt=S.t; st.info++; addLog('Sombra', `Habría enviado un aviso INFORMATIVO (mediana ${S.m.med} min, ${S.m.n} pacientes).`, 'informativa')}
         flash('disparo');
       }
@@ -1707,10 +1730,9 @@ function shadowStep(){
         S.alertLevel='alerta'; S.episode.fired=S.t; st.alerta++;
         addLog('Sombra', L==='alerta'?`La informativa habría pasado a alerta (${S.reasonAlert}).`:`La informativa habría pasado a alerta por durar ${cfg.infoMax} min.`, 'alerta');
       }
-      if(S.alertLevel==='alerta' && !S.episode.respAt && S.t-S.episode.fired>=cfg.ackMax){S.episode.respAt=S.t}
-      if(S.alertLevel==='alerta' && !S.escLevel && S.t-S.episode.fired>=cfg.escSostenida){
+      if(S.alertLevel==='alerta' && !S.escLevel && L!=='verde' && S.t-S.episode.fired>=cfg.silencio+2){
         S.escLevel=1; S.episode.esc=1; st.esc++;
-        addLog('Sombra', `Habría escalado a Dirección de Enfermería (lleva ${cfg.escSostenida} min sin resolverse).`, 'escalada');
+        addLog('Sombra', `Sin ninguna medida, habría escalado a Dirección de Enfermería (persiste tras ${cfg.silencio} min).`, 'escalada');
       }
       if(S.below){S.stable++; if(S.stable>=cfg.cierreEstable){
         const d=S.t-(S.episode.infoAt??S.episode.fired);
@@ -1747,13 +1769,18 @@ function alertStep(){
       break;
     case 'notificada':
       if(S.escLevel===0){
-        if(!S.respIn && S.t-S.notifiedAt>=cfg.ackMax) escalateResp();
-        if(S.t-S.episode.fired>=cfg.escSostenida) escalate(`nadie la ha resuelto en ${cfg.escSostenida} min`, true);
+        if(!S.reminded && S.t-S.notifiedAt>=cfg.ackRecordatorio) remind();
+        if(S.t-S.notifiedAt>=cfg.ackEscala) escalate(`nadie la ha asumido en ${cfg.ackEscala} min`, true);
       } else if(S.t>=S.escAckDeadline) incident();
       break;
     case 'silencio':
       S.stable = S.below?S.stable+1:0;
       if(S.stable>=cfg.cierreEstable || S.t>=S.silenceEnd) reevaluate();
+      break;
+    case 'seguimiento':
+      S.stable = S.below?S.stable+1:0;
+      if(S.stable>=cfg.cierreEstable){close(); break}
+      if(S.t>=S.followEnd) reevaluate();
       break;
     case 'estabilizando':
       if(S.below){S.stable++; if(S.stable>=cfg.cierreEstable) close()}
@@ -1770,8 +1797,9 @@ function activeNode(){
     case 'pre': return 'disparo';
     case 'sombra': return 'disparo';
     case 'informada': return 'notificacion';
-    case 'notificada': return S.escLevel||S.respIn?'escalado':'acuse';
+    case 'notificada': return S.escLevel?'escalado':'acuse';
     case 'silencio': return 'silencio';
+    case 'seguimiento': return 'reevaluacion';
     case 'estabilizando': return 'cierre';
   }
   return 'monitor';
@@ -1811,10 +1839,10 @@ const _alertStep=alertStep; alertStep=function(){
 };
 const _fire=fire; fire=function(fromInfo,why){
   if(fromInfo) trace(/dura ya/.test(why||'')?'Ttim':'Cup'); else trace('GW7');
-  _fire(fromInfo,why); trace('T3','U1');
+  _fire(fromInfo,why); trace('T3','Udin','Edin','#jump:T3','U1');
 };
 const _closeInfo=closeInfo; closeInfo=function(){trace('Cnorm'); _closeInfo(); trace('Einf','Start','T1')};
-const _escalateResp=escalateResp; escalateResp=function(){_escalateResp(); trace('B5','U1b')};
+const _remind=remind; remind=function(){_remind(); trace('Brem','Trem','Erem','#jump:U1')};
 const _ack=ack; ack=function(role,how){
   if(S.alert!=='notificada') return; _ack(role,how);
   trace(role==='dir'?null:'GW3','IT1');
@@ -1824,43 +1852,46 @@ const _annul=annul; annul=function(role,reason){
   trace(role==='dir'?null:'GW3','T4','E2','Start','T1');
 };
 const _reevaluate=reevaluate; reevaluate=function(){trace('T5','GW4'); _reevaluate()};
-const _persists=persists; persists=function(){trace('GW8'); _persists()};
-const _reactivate=reactivate; reactivate=function(reason){trace('T9','U1'); _reactivate(reason)};
-const _escalate=escalate; escalate=function(reason,fromWaiting){trace(fromWaiting?(S.respIn?'B20':'B20'):null,'T10','U4'); _escalate(reason,fromWaiting)};
+const _persists=persists; persists=function(){
+  if(S.escLevel===0) trace('GW9');
+  _persists(); if(S.alert==='seguimiento') trace('IT2');
+};
+const _reactivate=reactivate; reactivate=function(reason){trace('#jump:T10','U4'); _reactivate(reason)};
+const _escalate=escalate; escalate=function(reason,fromWaiting){trace(fromWaiting?'Besc':null,'T10','U4'); _escalate(reason,fromWaiting)};
 const _close=close; close=function(){trace('T7','T8','U3'); _close()};
 const _feedback=feedback; feedback=function(role,id,accion,util){_feedback(role,id,accion,util); trace('E3','Start','T1')};
 
 /* ===== Textos de cada paso ===== */
 const EXPL={
   Start:'El proceso arranca cada minuto con un temporizador.',
-  T1:'El Command Center calcula la mediana de espera hasta triaje y la espera más larga con los datos del HIS.',
+  T1:'El Command Center vigila la mediana de espera hasta triaje y la espera más larga con los datos del HIS.',
   GW1:'¿La mediana pasa de 6 min o algún paciente pasa de 15?',
   GW2:'Comprueba que se mantiene 2 min para no avisar por un pico pasajero.',
   E0:'Sin alerta.', E1:'Ha vuelto por debajo del umbral antes de confirmarse. No se avisa.',
-  GW7:'Alerta si hay más de 3 pacientes o alguien pasa de 15 min; si no, informativa.',
+  GW7:'Alerta si hay más de 6 pacientes o alguien pasa de 15 min; si no, informativa.',
   Tinf:'Aviso informativo a la dinamizadora y a la responsable de enfermería. No pide respuesta.',
   EBG:'La informativa espera al primero de tres eventos: que se normalice, que empeore o que pasen 15 min.',
   Cnorm:'La mediana lleva 5 min en 5 min o menos.', Einf:'La informativa se cierra sin intervención.',
-  Cup:'Ya hay más de 3 pacientes o alguien pasa de 15 min: la informativa pasa a alerta.',
+  Cup:'Ya hay más de 6 pacientes o alguien pasa de 15 min: la informativa pasa a alerta.',
   Ttim:'La informativa dura ya 15 min: pasa a alerta.',
-  T3:'Envía la alerta por WhatsApp a la dinamizadora, que es la responsable de la alerta.',
-  U1:'La dinamizadora valora la alerta y acude a la sala. Si no la asume en 5 min, se avisa a la responsable.',
-  B5:'5 min sin acuse: la alerta pasa también a la responsable de enfermería.',
-  U1b:'La responsable de enfermería valora la alerta. La dinamizadora también puede seguir asumiéndola.',
-  B20:'Lleva 20 min desde el aviso sin resolverse: escala a Dirección de Enfermería.',
-  GW3:'Quien recibe la alerta decide: asumir o anular con motivo.',
+  T3:'Envía la alerta por WhatsApp a la responsable de enfermería, que es su dueña, y en copia a la dinamizadora.',
+  Udin:'La dinamizadora acude a la sala de espera y ayuda a priorizar.', Edin:'La dinamizadora está en la sala.',
+  U1:'La responsable de enfermería asume la alerta y activa el 2.º box de triaje.',
+  Brem:'5 min sin acuse: recordatorio a la responsable, sin cerrar la tarea.', Trem:'Se envía el recordatorio.', Erem:'Recordatorio enviado. La alerta sigue esperando.',
+  Besc:'10 min sin acuse: escala a Dirección de Enfermería.',
+  GW3:'La responsable decide: asumir o anular con motivo.',
   T4:'Registra el motivo de la anulación y bloquea la alerta 60 min.', E2:'Alerta anulada con motivo registrado.',
-  IT1:'Silencio de 10 min para que la medida haga efecto. Si se cumple el cierre 5 min, se cierra antes.',
-  T5:'Revisa la mediana y la espera más larga al acabar el silencio.',
-  GW4:'¿Se cumple el cierre (mediana ≤ 5 min y nadie > 15) o persiste?',
-  GW8:'¿Han pasado 20 min desde el aviso? Si es así, escala; si no, reactiva.',
-  T9:'Reactiva la alerta y vuelve a avisar.',
+  IT1:'Silencio de 20 min para que el 2.º box haga efecto. Si se cumple el cierre 5 min, se cierra antes.',
+  T5:'Revisa la mediana y la espera más larga.',
+  GW4:'¿Se cumple el cierre (mediana ≤ 5 min y nadie > 15) o persiste la demora?',
+  GW9:'Persiste: ¿ha mejorado desde el acuse? La primera vez que mejora se dan 10 min más; si no mejora, escala.',
+  IT2:'Seguimiento de 10 min más sin avisar a nadie.',
   T7:'Cierra la alerta.', T8:'Pide feedback a quien la asumió.',
   U3:'Quien la asumió indica qué hizo y si el aviso le sirvió.', E3:'Alerta cerrada con el feedback registrado.',
   T10:'Escala a Dirección de Enfermería.',
   U4:'Dirección de Enfermería valora y envía refuerzo. Si no responde en 5 min, queda como incidencia.'
 };
-const KIND={'bpmn:StartEvent':'Inicio','bpmn:EndEvent':'Fin','bpmn:ExclusiveGateway':'Decisión','bpmn:UserTask':'Tarea de una persona','bpmn:SendTask':'Envío','bpmn:ServiceTask':'Tarea automática','bpmn:BusinessRuleTask':'Regla de negocio','bpmn:BoundaryEvent':'Plazo vencido','bpmn:IntermediateCatchEvent':'Evento','bpmn:EventBasedGateway':'Espera de eventos'};
+const KIND={'bpmn:StartEvent':'Inicio','bpmn:EndEvent':'Fin','bpmn:ExclusiveGateway':'Decisión','bpmn:UserTask':'Tarea de una persona','bpmn:SendTask':'Envío','bpmn:ServiceTask':'Tarea automática','bpmn:BusinessRuleTask':'Regla de negocio','bpmn:BoundaryEvent':'Plazo vencido','bpmn:IntermediateCatchEvent':'Evento','bpmn:IntermediateThrowEvent':'Envío','bpmn:EventBasedGateway':'Espera de eventos'};
 
 /* ===== Visor ===== */
 const xml=document.getElementById('bpmnXml').textContent.trim();
@@ -1903,6 +1934,7 @@ function paint(){
 }
 function moveTo(id){
   if(id==='#new'){visited=new Set(); vflows=new Set(); return}
+  if(id.startsWith('#jump:')){if(active) visited.add(active); active=id.slice(6); paint(); renderNow(); return}
   if(active){visited.add(active); const f=flowMap[active+'>'+id]; if(f) vflows.add(f)}
   active=id; paint(); renderNow();
 }
